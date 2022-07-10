@@ -1,0 +1,35 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:AWS Prelude 2022-02-07
+METHOD:PUBLISH
+X-PUBLISHED-TTL:PT1H
+BEGIN:VEVENT
+UID:f84824b1-af33-44c7-b1fe-a146a0581a80
+SUMMARY:Quick Tag-up
+DTSTAMP:20220610T103200Z
+DTSTART:20220616T170000Z
+DESCRIPTION:Thanks for scheduling a meeting with Prelude!\n\nNeed to resche
+	dule or cancel this meeting?  Please use the link below.\n\nhttps://prelud
+	e.amazon.com/m/f84824b1-af33-44c7-b1fe-a146a0581a80?s=e5ded92478c0fff283ea
+	a28b2c015843378c702fd1941946574cb7070d1c0e4baf879f6a0c54899942f75d6beab809
+	d061c02e9675c406e0a10be1dc926a090c\n\nPlease expect a phone call at the ti
+	me of your meeting.
+URL:https://prelude.amazon.com/m/f84824b1-af33-44c7-b1fe-a146a0581a80?s=e5d
+	ed92478c0fff283eaa28b2c015843378c702fd1941946574cb7070d1c0e4baf879f6a0c548
+	99942f75d6beab809d061c02e9675c406e0a10be1dc926a090c
+LOCATION:Phone
+STATUS:CONFIRMED
+ORGANIZER;CN=Rita Edet:mailto:prelude+reply+f84824b1-af33-44c7-b1fe-a146a05
+	81a80@prelude.amazon.com
+X-MICROSOFT-CDO-BUSYSTATUS:BUSY
+ATTENDEE;RSVP=FALSE;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;CN=Martell Dorse
+	tt:mailto:mdorsetti733@gmail.com
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Quick Tag-up
+TRIGGER:-PT15M
+END:VALARM
+DURATION:PT30M
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,8 @@
+httpie github 
+python -m pip install -U wheel setuptools
+
+docker-py but get the real docker also
+
+docker pull python
+
+docker is also on zsh 
