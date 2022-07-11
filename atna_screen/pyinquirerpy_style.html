@@ -1,0 +1,494 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head><meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Keybindings" href="kb.html" /><link rel="prev" title="fuzzy" href="prompts/fuzzy.html" />
+
+    <meta name="generator" content="sphinx-4.5.0, furo 2021.11.23"/>
+        <title>Style - InquirerPy</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=7f0192ddeb2adecfbaa87ffbcf67d16358b30bc1" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?digest=0af69da206d614734f649b27d4cdc2dd6c31f41d" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #f8f8f8;
+  --color-code-foreground: black;
+  
+  }
+  body[data-theme="dark"] {
+    --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+  }
+  @media (prefers-color-scheme: dark) {
+    body:not([data-theme="light"]) {
+      --color-code-background: #202020;
+  --color-code-foreground: #d0d0d0;
+  
+    }
+  }
+</style></head>
+  <body>
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" />
+      <line x1="4" y1="6" x2="20" y2="6" />
+      <line x1="10" y1="12" x2="20" y2="12" />
+      <line x1="6" y1="18" x2="20" y2="18" />
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-half" viewBox="0 0 24 24">
+    <title>Auto light/dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-shadow">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M13 12h5" />
+      <path d="M13 15h4" />
+      <path d="M13 18h1" />
+      <path d="M13 9h4" />
+      <path d="M13 6h1" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc">
+<label class="overlay sidebar-overlay" for="__navigation">
+  <div class="visually-hidden">Hide navigation sidebar</div>
+</label>
+<label class="overlay toc-overlay" for="__toc">
+  <div class="visually-hidden">Hide table of contents sidebar</div>
+</label>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <div class="visually-hidden">Toggle site navigation sidebar</div>
+        <i class="icon"><svg><use href="#svg-menu"></use></svg></i>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">InquirerPy</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle">
+          <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+          <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <div class="visually-hidden">Toggle table of contents sidebar</div>
+        <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  
+  
+  <span class="sidebar-brand-text">InquirerPy</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder=Search name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">prompts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="prompts/input.html">text</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prompts/secret.html">secret</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prompts/filepath.html">filepath</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prompts/number.html">number</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prompts/confirm.html">confirm</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prompts/list.html">select</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prompts/rawlist.html">rawlist</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prompts/expand.html">expand</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prompts/checkbox.html">checkbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prompts/fuzzy.html">fuzzy</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Customisation</span></p>
+<ul class="current">
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">Style</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kb.html">Keybindings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="height.html">Height</a></li>
+<li class="toctree-l1"><a class="reference internal" href="env.html">Environment Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dynamic.html">Dynamic Values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="raise_kbi.html">Skip &amp; KeyboardInterrupt</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="inquirer.html">inquirer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prompt.html">prompt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="validator.html">Validator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="separator.html">Separator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="patched_print.html">patched_print</a></li>
+<li class="toctree-l1"><a class="reference internal" href="color_print.html">color_print</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">CHANGELOG</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/kazhala/InquirerPy">GitHub Repository</a></li>
+</ul>
+
+</div>
+</div>
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <div class="content-icon-container">
+          <div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle">
+              <div class="visually-hidden">Toggle Light / Dark / Auto color theme</div>
+              <svg class="theme-icon-when-auto"><use href="#svg-sun-half"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <div class="visually-hidden">Toggle table of contents sidebar</div>
+            <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
+          </label>
+        </div>
+        <article role="main">
+          <section class="tex2jax_ignore mathjax_ignore" id="style">
+<h1>Style<a class="headerlink" href="#style" title="Permalink to this headline">¶</a></h1>
+<p>Each <code class="docutils literal notranslate"><span class="pre">InquirerPy</span></code> prompt contains several <a class="reference external" href="#components">components</a> which you can
+<a class="reference external" href="#customising-style">customise</a> the style.</p>
+<section id="customising-style">
+<h2>Customising Style<a class="headerlink" href="#customising-style" title="Permalink to this headline">¶</a></h2>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Checkout <a class="reference external" href="#default-style">Default Style</a> for all available style classes to customise.</p>
+</div>
+<section id="classic-syntax-pyinquirer">
+<h3>Classic Syntax (PyInquirer)<a class="headerlink" href="#classic-syntax-pyinquirer" title="Permalink to this headline">¶</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><code class="docutils literal notranslate"><span class="pre">InquirerPy</span></code> also supports style customisation via ENV variables. Checkout <a class="reference internal" href="env.html#style"><span class="std std-ref">ENV</span></a> documentation.</p>
+</div>
+<p>The entry point function <a class="reference internal" href="prompt.html#prompt"><span class="std std-ref">prompt</span></a> has a parameter <code class="docutils literal notranslate"><span class="pre">style</span></code> which you can use to apply custom styling using <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">InquirerPy</span> <span class="kn">import</span> <span class="n">prompt</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Confirm order?"</span><span class="p">,</span> <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"confirm"</span><span class="p">,</span> <span class="s2">"default"</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">"questionmark"</span><span class="p">:</span> <span class="s2">"#ff9d00 bold"</span><span class="p">},</span>
+    <span class="n">vi_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">style_override</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">style_override</span></code> can be used to remove all <a class="reference external" href="#default-style">Default Style</a>. Value is <code class="docutils literal notranslate"><span class="pre">True</span></code> by default.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">InquirerPy</span> <span class="kn">import</span> <span class="n">prompt</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">prompt</span><span class="p">(</span>
+    <span class="p">{</span><span class="s2">"message"</span><span class="p">:</span> <span class="s2">"Confirm order?"</span><span class="p">,</span> <span class="s2">"type"</span><span class="p">:</span> <span class="s2">"confirm"</span><span class="p">,</span> <span class="s2">"default"</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+    <span class="n">style</span><span class="o">=</span><span class="p">{</span><span class="s2">"questionmark"</span><span class="p">:</span> <span class="s2">"#ff9d00 bold"</span><span class="p">},</span>
+    <span class="n">vi_mode</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">style_override</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="alternate-syntax">
+<h3>Alternate Syntax<a class="headerlink" href="#alternate-syntax" title="Permalink to this headline">¶</a></h3>
+<p>When using the <a class="reference internal" href="../index.html#alternate-syntax"><span class="std std-ref">Alternate Syntax</span></a>, each <cite>prompt</cite> class requires a <a class="reference internal" href="api.html#InquirerPy.utils.InquirerPyStyle" title="InquirerPy.utils.InquirerPyStyle"><code class="xref py py-class docutils literal notranslate"><span class="pre">InquirerPyStyle</span></code></a> instance instead of a dictionary. You can get
+this object by using <a class="reference internal" href="api.html#InquirerPy.utils.get_style" title="InquirerPy.utils.get_style"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_style()</span></code></a>.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">InquirerPy.utils.</span></span><span class="sig-name descname"><span class="pre">get_style</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/InquirerPy/utils.html#get_style"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Obtain an <a class="reference internal" href="api.html#InquirerPy.utils.InquirerPyStyle" title="InquirerPy.utils.InquirerPyStyle"><code class="xref py py-class docutils literal notranslate"><span class="pre">InquirerPyStyle</span></code></a> instance which can be consumed by the <cite>style</cite> parameter in prompts.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>This function supports ENV variables.</p>
+<p>For all the color ENV variable names, refer to the <a class="reference internal" href="env.html#style"><span class="std std-ref">ENV</span></a> documentation.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If no style is provided, then a default theme based on <a class="reference external" href="https://github.com/joshdick/onedark.vim#color-reference">one dark</a>
+color palette is applied.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Priority: style parameter -&gt; ENV variable -&gt; default style</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>style</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.10)"><em>Dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em>]</em><em>]</em>) – The dictionary of style classes and their colors, If nothing is passed, the style will be resolved to the <a class="reference internal" href="#default-style"><span class="std std-ref">Default Style</span></a>.</p></li>
+<li><p><strong>style_override</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – A boolean to determine if the supplied <cite>style</cite> parameter should be merged with the <a class="reference internal" href="#default-style"><span class="std std-ref">Default Style</span></a> or override them.
+By default, the supplied style will overwrite the <a class="reference internal" href="#default-style"><span class="std std-ref">Default Style</span></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>An instance of <a class="reference internal" href="api.html#InquirerPy.utils.InquirerPyStyle" title="InquirerPy.utils.InquirerPyStyle"><code class="xref py py-class docutils literal notranslate"><span class="pre">InquirerPyStyle</span></code></a>.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="api.html#InquirerPy.utils.InquirerPyStyle" title="InquirerPy.utils.InquirerPyStyle">InquirerPy.utils.InquirerPyStyle</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">InquirerPy</span> <span class="kn">import</span> <span class="n">get_style</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">InquirerPy</span> <span class="kn">import</span> <span class="n">inquirer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">style</span> <span class="o">=</span> <span class="n">get_style</span><span class="p">({</span><span class="s2">"questionmark"</span><span class="p">:</span> <span class="s2">"#ffffff"</span><span class="p">,</span> <span class="s2">"answer"</span><span class="p">:</span> <span class="s2">"#000000"</span><span class="p">},</span> <span class="n">style_override</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">inquirer</span><span class="o">.</span><span class="n">confirm</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">"Confirm?"</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="n">style</span><span class="p">)</span><span class="o">.</span><span class="n">execute</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+</section>
+</section>
+<section id="default-style">
+<h2>Default Style<a class="headerlink" href="#default-style" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The default style is based on <a class="reference external" href="https://github.com/joshdick/onedark.vim/blob/master/colors/onedark.vim">onedark</a> color palette.</p>
+</div>
+<p>Checkout <a class="reference external" href="#components">Components</a> to see how the following styles are applied to each <code class="docutils literal notranslate"><span class="pre">prompt</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">"questionmark"</span><span class="p">:</span> <span class="s2">"#e5c07b"</span><span class="p">,</span>
+    <span class="s2">"answermark"</span><span class="p">:</span> <span class="s2">"#e5c07b"</span><span class="p">,</span>
+    <span class="s2">"answer"</span><span class="p">:</span> <span class="s2">"#61afef"</span><span class="p">,</span>
+    <span class="s2">"input"</span><span class="p">:</span> <span class="s2">"#98c379"</span><span class="p">,</span>
+    <span class="s2">"question"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"answered_question"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"instruction"</span><span class="p">:</span> <span class="s2">"#abb2bf"</span><span class="p">,</span>
+    <span class="s2">"long_instruction"</span><span class="p">:</span> <span class="s2">"#abb2bf"</span><span class="p">,</span>
+    <span class="s2">"pointer"</span><span class="p">:</span> <span class="s2">"#61afef"</span><span class="p">,</span>
+    <span class="s2">"checkbox"</span><span class="p">:</span> <span class="s2">"#98c379"</span><span class="p">,</span>
+    <span class="s2">"separator"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"skipped"</span><span class="p">:</span> <span class="s2">"#5c6370"</span><span class="p">,</span>
+    <span class="s2">"validator"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+    <span class="s2">"marker"</span><span class="p">:</span> <span class="s2">"#e5c07b"</span><span class="p">,</span>
+    <span class="s2">"fuzzy_prompt"</span><span class="p">:</span> <span class="s2">"#c678dd"</span><span class="p">,</span>
+    <span class="s2">"fuzzy_info"</span><span class="p">:</span> <span class="s2">"#abb2bf"</span><span class="p">,</span>
+    <span class="s2">"fuzzy_border"</span><span class="p">:</span> <span class="s2">"#4b5263"</span><span class="p">,</span>
+    <span class="s2">"fuzzy_match"</span><span class="p">:</span> <span class="s2">"#c678dd"</span><span class="p">,</span>
+    <span class="s2">"spinner_pattern"</span><span class="p">:</span> <span class="s2">"#e5c07b"</span><span class="p">,</span>
+    <span class="s2">"spinner_text"</span><span class="p">:</span> <span class="s2">""</span><span class="p">,</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="color-syntax">
+<h2>Color Syntax<a class="headerlink" href="#color-syntax" title="Permalink to this headline">¶</a></h2>
+<p>Applying basic style.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">"questionmark"</span><span class="p">:</span> <span class="s2">"blue"</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Coloring both foreground and background.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">"questionmark"</span><span class="p">:</span> <span class="s2">"fg:#e5c07b bg:#ffffff"</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Adding additional styles to text.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">"questionmark"</span><span class="p">:</span> <span class="s2">"fg:#e5c07b bg:#ffffff underline bold"</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="available-options">
+<h2>Available Options<a class="headerlink" href="#available-options" title="Permalink to this headline">¶</a></h2>
+<section id="colors">
+<h3>Colors<a class="headerlink" href="#colors" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.lihaoyi.com/post/BuildyourownCommandLinewithANSIescapecodes.html#8-colors">ANSI color palette</a>: <code class="docutils literal notranslate"><span class="pre">ansired</span></code></p></li>
+<li><p>Named color: <code class="docutils literal notranslate"><span class="pre">red</span></code></p></li>
+<li><p>Hexadecimal notation: <code class="docutils literal notranslate"><span class="pre">#ffffff</span></code></p></li>
+</ul>
+</section>
+<section id="text">
+<h3>Text<a class="headerlink" href="#text" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">underline</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">italic</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bold</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">reverse</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hidden</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">blink</span></code></p></li>
+</ul>
+</section>
+<section id="negative-variants">
+<h3>Negative Variants<a class="headerlink" href="#negative-variants" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">noblink</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nobold</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nounderline</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">noreverse</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nohidden</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">noitalic</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this headline">¶</a></h2>
+<p>The styling functionality leverages <a class="reference external" href="https://github.com/prompt-toolkit/python-prompt-toolkit">prompt_toolkit</a>.
+For more reference of the styling options, visit <code class="docutils literal notranslate"><span class="pre">prompt_toolkit</span></code> <a class="reference external" href="https://python-prompt-toolkit.readthedocs.io/en/master/pages/advanced_topics/styling.html">documentation</a>.</p>
+<p>The colors and styling support will be limited by the terminal and font and experience may vary between different environments. Avoid
+adding styles such as <code class="docutils literal notranslate"><span class="pre">italic</span></code> since lots of font or terminal doesn’t support it.</p>
+</section>
+<section id="components">
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<p><img alt="style1" src="https://assets.kazhala.me/InquirerPy/inquirerpy-style1.png"/>
+<img alt="style2" src="https://assets.kazhala.me/InquirerPy/inquirerpy-style2.png"/>
+<img alt="style3" src="https://assets.kazhala.me/InquirerPy/inquirerpy-style3.png"/></p>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="kb.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Keybindings</div>
+              </div>
+              <svg><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="prompts/fuzzy.html">
+              <svg><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">fuzzy</div>
+                
+              </div>
+            </a>
+        </div>
+
+        <div class="related-information">
+              Copyright &#169; 2021, Kevin Zhuang |
+          Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+          <a href="https://github.com/pradyunsg/furo">Furo theme</a>.
+            | <a class="muted-link" href="../_sources/pages/style.md.txt"
+               rel="nofollow">
+              Show Source
+            </a>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            Contents
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Style</a><ul>
+<li><a class="reference internal" href="#customising-style">Customising Style</a><ul>
+<li><a class="reference internal" href="#classic-syntax-pyinquirer">Classic Syntax (PyInquirer)</a></li>
+<li><a class="reference internal" href="#alternate-syntax">Alternate Syntax</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#default-style">Default Style</a></li>
+<li><a class="reference internal" href="#color-syntax">Color Syntax</a></li>
+<li><a class="reference internal" href="#available-options">Available Options</a><ul>
+<li><a class="reference internal" href="#colors">Colors</a></li>
+<li><a class="reference internal" href="#text">Text</a></li>
+<li><a class="reference internal" href="#negative-variants">Negative Variants</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#support">Support</a></li>
+<li><a class="reference internal" href="#components">Components</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/furo.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    </body>
+</html>

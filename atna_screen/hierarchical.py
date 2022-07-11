@@ -10,51 +10,62 @@ from PyInquirer import style_from_dict, prompt
 
 from examples import custom_style_2
 
-
-def inital_question_one():
-    directions_prompt = {
-        'type': 'list',
-        'name': 'type',
-        'message': 'what are you looking at?: ',
-        'choices': ["power","control"]
-    }
-    answers = prompt.prompt(directions_prompt)
-    return answers['type']
-
-def inital_question_two():
-    directions_prompt = {
-        'type': 'list',
-        'name': 'location',
-        'message': 'Where are you? >:',
-        'choices': ["mid","aft","fwd"]
-    }
-    answers = prompt.prompt(directions_prompt)
-    return answers['location']
-
-def inital_question_three():
-    new_prompt = {
-        "type": "input",
-        "name": "answ",
-        "message": "how much power is there: ",
-       }
-    answers = prompt.prompt(new_prompt)
-    return answers['answ']
+from pprint import pprint
 
 
-def main():
-    print('welcome to the catho manger \n')
-    my_type = inital_question_one()
-    direction = inital_question_two()
-    output = inital_question_three()
-    next(my_type,direction,output)
+class catho():
+     def question_one():
+        directions_prompt = {
+                  'type': 'list',
+                  'name': 'type',
+                  'message': 'what are you looking at?',
+                  'choices': ["power","control"]
+                }
+        answers = prompt.prompt(directions_prompt)
+        return answers['type']
 
-def next(my_type,direction,output):
-   dic = {
-             direction : {
-             my_type: output
-       }
-   }
-   print(dic)
+     def question_two():
+         directions_prompt = {
+                   'type': 'list',
+                   'name': 'location',
+                   'message': 'Where are you?',
+                   'choices': ["mid","aft","fwd"]
+                 }
+         answers = prompt.prompt(directions_prompt)
+         return answers['location']
 
+     def question_three():
+        new_prompt = {
+           "type": "input",
+           "name": "answ",
+           "message": "how much power is there: "
+         }
+        answers = prompt.prompt(new_prompt)
+        return answers['answ']
+
+     def question_four():
+        new_prompt = {
+           "type": "input",
+           "name": "answ_otther",
+           "message": "so what the readings: "
+         }
+        answers = prompt.prompt(new_prompt)
+        return answers['answ_other']
+
+
+     def main():
+        print('Welcome to the catho manger\nSo what are you waiting for... fill me in!!! \n')
+        type = catho.question_one() #power or control
+        pos = catho.question_two() #fwd,mid,aft
+        pwr = catho.question_three()
+        cnt = catho.question_four()
+
+"""
+make one class of catho and make one def that has a INPUT
+
+
+
+
+"""
 if __name__ == '__main__':
-    main()
+    catho.main()
