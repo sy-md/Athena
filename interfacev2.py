@@ -79,9 +79,9 @@ class interface():
               with open(my_cal, "w") as sending_cal:
                   json.dump(cal,sending_cal, indent=4)
               return(interface.calendar())
-        else: #continue if everthing is fine
-          if len(data["category"]) == 0: # fixing empty category
-
+        else: #continue if file is good
+          if len(data["category"]) == 0: # check if empty fixing empty category
+            #add a filler category 
             new = inquirer.text(message="add a new category:").execute()
             data["category"].append(new)
 
@@ -112,7 +112,7 @@ class interface():
           note = inquirer.text(message="whats your note:").execute()
           data["Calendar"].append("{}•{} {} : {}".format(str,end,category,note))
 
-          with open(my_cal, "w") as sending_cal:
+          with open(my_cal, "w") as sending_cal: #send a entry
               json.dump(data,sending_cal, indent=4)
               os.system("sleep 2")
               print("data sent...")
@@ -134,6 +134,21 @@ class interface():
         os.system("python {}".format(action))
  
      def NoteBook():
+        """
+        first:
+             check for any bugs on the first go through
+
+        TODO:
+            Try to read the file
+            good then continue
+            else create the files data
+
+           add pick list add note
+           remove pick like and postion remove
+           edit pick list change value
+            
+
+        """
         with open(my_phone, "r") as writing:
             data = json.load(writing)
 
