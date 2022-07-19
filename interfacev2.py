@@ -1,4 +1,3 @@
-
 from InquirerPy import inquirer
 from colorama import Back,Fore,Style,init
 import json,os,calendar,traceback
@@ -20,8 +19,8 @@ class interface():
         print("             Welcome back sy, What can I do for you\n")
         os.system("cal -n3 | lolcat -8")
         
-
 #        TextCalendar.formatyear(self,2022, w=2, l=1, c=6, m=3)
+
         os.system("date")
         print("\n••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••••")
 
@@ -37,6 +36,7 @@ class interface():
               with open(my_cal, "w") as sending_cal:
                   json.dump(cal,sending_cal, indent=4)
               return(interface.start())
+
         else: #if there is nothing wrong continue
           with open (my_cal,"r") as reading_cal:
               data = json.load(reading_cal)        
@@ -88,6 +88,15 @@ class interface():
             with open(my_cal, "w") as cal_correction:
                 json.dump(data,cal_correction, indent=4)
             return(interface.calendar())
+
+          """
+          TODO
+          checkboxes to make item that has passed or that have been finshed
+          or
+          if enddate is given mark it and if date _ matches remove
+          """
+
+
           # start the calendar program
           str = inquirer.text(message="start: time|date ").execute()
           end = inquirer.text(message="end: time|date ").execute()
@@ -149,22 +158,38 @@ class interface():
             
 
         """
-        with open(my_phone, "r") as writing:
-            data = json.load(writing)
+        try: 
+            with open(my_phone, "r") as writing:
+                data = json.load(writing)
 
-            pprint(data)
+        except FileNotFoundError:
+              display = {
+                    "notes": {}, # want to change to a dict
+                    "Q1": {},
+                    "Q2": {},
+                    "Q3": {},
+                    "Q4": {}
+                    }
+              with open(my_phone, "w") as sending:
+                  json.dump(display,sending, indent=4)
+        else:
+         pprint(data,sort_dicts=True,indent=2)
+   
+#        for k,v in data.items(): 
+#           new_data = ("{}:{}".format(k,v))
+#           pprint(new_data,sort_dicts=True)
 
-            options = inquirer.select(
+         options = inquirer.select(
                             message="choose a selection ",
                             choices=["reset","edit","add","remove"]).execute()
-            if options == "reset":
+         if options == "reset":
                 confirm = inquirer.confirm(message="Confirm?").execute()
                 display = {
-                    "notes": {},
-                    "Q1": [],
-                    "Q2": [],
-                    "Q3": [],
-                    "Q4": []
+                    "notes": {}, # want to change to a dict
+                    "Q1": {},
+                    "Q2": {},
+                    "Q3": {},
+                    "Q4": {}
                     }
                 with open(my_phone, "w") as sending:
                     json.dump(display,sending, indent=4)
@@ -172,16 +197,63 @@ class interface():
                     os.system("sleep 3")
                 return(interface.start())
 
-            #choose list : make a note
-            choose_lst = inquirer.select(message="select which list:",choices=data).execute()
-            note = inquirer.text(message="whats your note:").execute()
-            confirm = inquirer.confirm(message="Confirm to save?").execute()
+         if options == "remove":
+           choose_lst = inquirer.select(message="select which list:",choices=data).execute()
+           chs_title = inquirer.select(message="choose witch entry:",choices=data[choose_lst]).execute()
+           confirm = inquirer.confirm(message="Confirm to remove").execute()
 
-            if confirm == True:
-              data[choose_lst].append(note)
+           if confirm == True:
+             del  data[choose_lst][chs_title]
 
-        with open(my_phone, "w") as sending:
-            json.dump(data,sending,indent=2)
+             with open(my_phone, "w") as sending:
+                 json.dump(data,sending,indent=2)
+
+             exit = inquirer.confirm(message="go back to home screen").execute()
+             if exit == True:
+               return(interface.start())
+             else:
+                 return(interface.NoteBook())
+
+         # edit list : make changes *.replace
+         if options == "edit": #a switch would be cool
+
+             choose_lst = inquirer.select(message="select which list:",choices=data).execute()            
+             choose_itm = inquirer.select(message="choose witch entry:",choices=data[choose_lst]).execute()
+             ed_note = inquirer.text(message="whats your note: ").execute()
+             confirm = inquirer.confirm(message="Confirm to change message?").execute()
+           
+             if confirm == True:
+               data[choose_lst][choose_itm] = (ed_note)
+
+             with open(my_phone, "w") as sending:
+              json.dump(data,sending,indent=2)
+
+             exit = inquirer.confirm(message="go back to home screen").execute()
+             if exit == True:
+               return(interface.start())
+             else:
+                  return(interface.NoteBook())
+     
+         #choose list : make a note
+         if options == "add":
+ 
+           choose_lst = inquirer.select(message="select which list:",choices=data).execute()
+           title = inquirer.text(message="title your note:").execute()
+           note = inquirer.text(message="whats your note:").execute()
+           confirm = inquirer.confirm(message="Confirm to save?").execute()
+
+           if confirm == True:
+             data[choose_lst][title] = note
+
+             with open(my_phone, "w") as sending:
+                 json.dump(data,sending,indent=2)
+
+             exit = inquirer.confirm(message="go back to home screen").execute()
+             if exit == True:
+               return(interface.start())
+             else:
+                  return(interface.NoteBook())
+
 
 interface.start()
 """
