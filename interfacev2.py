@@ -31,7 +31,7 @@ class interface():
         except FileNotFoundError:
               cal = {
                      "Calendar": [],
-                     "category": []
+                     "category": ["add"]
                     }
               with open(my_cal, "w") as sending_cal:
                   json.dump(cal,sending_cal, indent=4)
@@ -71,10 +71,10 @@ class interface():
            with open (my_cal,"r") as reading_cal:
                data = json.load(reading_cal)
         #rebuild if not there
-        except FileNotFoundError: 
+        except FileNotFoundError: #this has to go redunent 
               cal = {
                      "Calendar": [],
-                     "category": []
+                     "category": ["add"]
                     }
               with open(my_cal, "w") as sending_cal:
                   json.dump(cal,sending_cal, indent=4)
@@ -88,7 +88,9 @@ class interface():
             with open(my_cal, "w") as cal_correction:
                 json.dump(data,cal_correction, indent=4)
             return(interface.calendar())
-
+ 
+          with open (my_cal,"r") as reading_cal:
+               data = json.load(reading_cal)
           """
           TODO
           checkboxes to make item that has passed or that have been finshed
@@ -98,6 +100,7 @@ class interface():
 
 
           # start the calendar program
+          print("new category wqs made")
           str = inquirer.text(message="start: time|date ").execute()
           end = inquirer.text(message="end: time|date ").execute()
           category = inquirer.select( message="select your options:",
@@ -106,12 +109,12 @@ class interface():
           if category == "add": # adding new category to calendar
             new = inquirer.text(message="add a new category:").execute()
             if new not in data["category"]:  
-                data["category"] = new
+                new_cat = data["category"].append(new)
             note = inquirer.text(message="whats your note:").execute()
-            data["Calendar"].append("{}•{} {} : {}".format(str,end,new,note))
+            data["Calendar"].append("{}•{} {} : {}".format(str,end,new_cat,note))
 
             with open(my_cal, "w") as sending_cal:
-                json.dump((data["category"].append(new),data),sending_cal, indent=4)
+                json.dump(data,sending_cal, indent=4)
 
             exit = inquirer.confirm(message="go back to home screen").execute()
             if exit == True:
@@ -124,7 +127,7 @@ class interface():
           data["Calendar"].append("{}•{} {} : {}".format(str,end,category,note))
 
           with open(my_cal, "w") as sending_cal: #send a entry
-              json.dump(data,sending_cal, indent=4)
+              json.dump(data,sending_cal,indent=4)
               os.system("sleep 2")
               print("data sent...")
 
