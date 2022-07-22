@@ -105,6 +105,8 @@ class interface():
       
           if category == "add": # adding new category to calendar
             new = inquirer.text(message="add a new category:").execute()
+            if new not in data["category"]:  
+                data["category"] = new
             note = inquirer.text(message="whats your note:").execute()
             data["Calendar"].append("{}•{} {} : {}".format(str,end,new,note))
 
@@ -181,21 +183,25 @@ class interface():
 
          options = inquirer.select(
                             message="choose a selection ",
-                            choices=["reset","edit","add","remove"]).execute()
+                            choices=["reset","edit","add","remove","Exit"]).execute()
+          
+         if options == "exit":
+            exit()
+
          if options == "reset":
-                confirm = inquirer.confirm(message="Confirm?").execute()
-                display = {
-                    "notes": {}, # want to change to a dict
-                    "Q1": {},
-                    "Q2": {},
-                    "Q3": {},
-                    "Q4": {}
-                    }
-                with open(my_phone, "w") as sending:
-                    json.dump(display,sending, indent=4)
-                    print("sending data ....")
-                    os.system("sleep 3")
-                return(interface.start())
+           confirm = inquirer.confirm(message="Confirm?").execute()
+           display = {
+                "notes": {}, # want to change to a dict
+                "Q1": {},
+                "Q2": {},
+                "Q3": {},
+                "Q4": {}
+           }
+           with open(my_phone, "w") as sending:
+               json.dump(display,sending, indent=4)
+               print("sending data ....")
+               os.system("sleep 3")
+           return(interface.start())
 
          if options == "remove":
            choose_lst = inquirer.select(message="select which list:",choices=data).execute()
