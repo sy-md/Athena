@@ -14,44 +14,91 @@ my_cal = "cal.json" # calendar db
 
 @dataclass
 class calendar: #filter data for the calendar with parsing
-    note: Optional[str]
-    category: Optional[str]
+    duration: Optional[List[str]]
+    note: Optional[List[str]]
+    category: Optional[List[str]]
 
-    def check_calendar(data,entry):
+    def check_calendar(data,entry): #check during and after
         try:
+
             with open (my_cal,"r") as reading:
                 data = json.load(reading)
 
                 #pretend this is a category
-                data["note"] = entry
-
+                #data["note"] = entry
+                print(entry["category"])
                 with open (my_cal,"w") as reading:
                     json.dump(entry,reading)
-                return calendar.ant()
+                return calendar.vaildation()
 
         except FileNotFoundError:
             with open (my_cal,"w") as reading:
                 json.dump(p1,reading)
                 print("i put data in the json")
-            return calendar.check(entry)
+            return calendar.check_calendar(entry)
 
-    def ant():
+    def vaildation():
+        print("Vaildating...")
         with open (my_cal,"r") as reading:
             data = json.load(reading)
             print("checking for int")
             for x in range(len(data["note"])):
                if x > 5:
                    raise ValueError("sy: to big")
+    def calculation():
+        pass
+        """
+        calculation.py
+
+        1.) take user data i,e {start date & end date} .split()
+        2.) parse the dates into actully dates
+        3.) compare start date to end date
+
+        {
+
+        red :
+            Duration: 1wk
+            type: Urgent
+            time : (st ,ed)
+            timediff: "days till",
+
+        yellow :
+            Duration: 2wks:
+
+            type: Urgent
+            time : (st ,ed)
+            timediff: "days till"
+
+
+        green :
+            Duration: 3wks
+            type: Urgent
+            time : (st ,ed)
+            timediff: "days till"
+
+
+        pink :
+            Duration: >3wks
+            type: Urgent
+            time : (st ,ed)
+            timediff: "days till"
+
+            }
+
+            we also need LinkedList
+
+        """
 
 
 class interface:
-    def start():
+    def start():# gets user choice for direction of program
         os.system("clear")
         os.system("figlet '              Athena' | lolcat -8")
         print("             Welcome back sy, What can I do for you\n")
         os.system("cal -n3 | lolcat -8")
 
         os.system("date")
+
         main_op = inquirer.expand(
                 message="select a option:",
                 choices=[
@@ -63,9 +110,9 @@ class interface:
         if main_op == "3": #exit
             print("logging off")
             exit()
+
         confirm = inquirer.confirm(message="Confirm?").execute()
 
-        #options for path
         if confirm == True and main_op == "App" or "2" or "1":
             return interface.get_json(main_op)
         else:
@@ -89,69 +136,49 @@ class interface:
 
         except FileNotFoundError:
             with open (opt[chs],'w') as send_cal:
-                json.dump({},send_cal,indent=4)
+                json.dump(asdict(calendar([],[],[])),send_cal,indent=4)
 
             with open ( opt[chs] ,"r") as reading_cal:
                 data = json.load(reading_cal)
-            return interface.my_cal(data)
-
+                os.system("touch cal.json")
+                os.system("sleep 2")
+            return interface.start()
 
     def my_cal(data):
-        note = input("note: ")
-        category = input("choose:")
-#       if category in data["category"]:
-        entry = asdict(calendar(note,category))
-#           return calendar.check_calendar(data,entry)
-#       if category == "add":
-#           new_category = input("make a category: ")
-#           entry = asdict(calendar(note,new_category))
+        #start the calendar program
+        stt = inquirer.text(message="start: time|date ").execute()
+        end = inquirer.text(message="end: time|date ").execute()
+        duration = (stt,end)
+        #making anote
+        note = inquirer.text(message="note: ").execute()
+        print(data["category"]) # []
+
+        with open ("cal.json",'r') as rd:
+            data = json.load(rd)
+
+            if "add" not in data["category"]:
+                data["category"].append("add")
+
+            category_ops = inquirer.select( message="select your options:",
+                choices=data["category"]).execute()
+
+            category = data["category"]
+
+            data["category"].append(category_ops)
+            with open ("cal.json",'w') as update_cal:
+                json.dump(data,update_cal,indent=4)
+
+        entry = asdict(calendar(duration,note,category))
         return calendar.check_calendar(data,entry)
+
     def my_ntbk():
         pass
+        note = inquirer.text(message="add a new category:").execute()
 
 interface.start()
 
 
 
-
-#         
-#
-#     def calendar(): 
-#        try: # try to open the calendar json
-#           with open (my_cal,"r") as reading_cal:
-#               data = json.load(reading_cal)
-#        #rebuild if not there
-#        except FileNotFoundError: 
-#              cal = {
-#                     "Calendar": [],
-#                     "category": []
-#                    }(
-#              with open(my_cal, "w") as sending_cal:
-#                  json.dump(cal,sending_cal, indent=4)
-#              return(interface.calendar())
-#        else: #continue if file is good
-#          if len(data["category"]) == 0: # check if empty fixing empty category
-#            #add a filler category 
-#            new = inquirer.text(message="add a new category:").execute()
-#            data["category"].append(new)
-#
-#            with open(my_cal, "w") as cal_correction:
-#                json.dump(data,cal_correction, indent=4)
-#            return(interface.calendar())
-#
-#          """
-#          TODO
-#          checkboxes to make item that has passed or that have been finshed
-#          or
-#          if enddate is given mark it and if date _ matches remove
-#          """
-#
-#
-#          # start the calendar program
-#          str = inquirer.text(message="start: time|date ").execute()
-#          end = inquirer.text(message="end: time|date ").execute()
-#          category = inquirer.select( message="select your options:",
-#                           choices=data["category"]).execute()
 #      
 #          if category == "add": # adding new category to calendar
 #            new = inquirer.text(message="add a new category:").execute()
