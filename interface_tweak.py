@@ -15,7 +15,7 @@ my_cal = "cal.json" # calendar db
 @dataclass
 class calendar: #filter data for the calendar with parsing
     duration: Optional[List[str]]
-    note: Optional[List[str]]
+    note: Optional[Dict[str,str]]
     category: Optional[List[str]]
 
     def check_calendar(data,entry): #check during and after
@@ -136,7 +136,7 @@ class interface:
 
         except FileNotFoundError:
             with open (opt[chs],'w') as send_cal:
-                json.dump(asdict(calendar([],[],[])),send_cal,indent=4)
+                json.dump(asdict(calendar([],{},[])),send_cal,indent=4)
 
             with open ( opt[chs] ,"r") as reading_cal:
                 data = json.load(reading_cal)
@@ -150,7 +150,7 @@ class interface:
         end = inquirer.text(message="end: time|date ").execute()
         duration = (stt,end)
         #making anote
-        note = inquirer.text(message="note: ").execute()
+        msg = inquirer.text(message="note: ").execute()
         print(data["category"]) # []
 
         with open ("cal.json",'r') as rd:
@@ -162,9 +162,13 @@ class interface:
             category_ops = inquirer.select( message="select your options:",
                 choices=data["category"]).execute()
 
-            category = data["category"]
+            if category_ops == "add":
+                new_cat = inquirer.text(message="make a new category: ").execute()
+                data["category"].append(new_cat)
 
-            data["category"].append(category_ops)
+            category = data["category"]
+            data["note"][new_cat] = msg
+            note = data["note"]
             with open ("cal.json",'w') as update_cal:
                 json.dump(data,update_cal,indent=4)
 
