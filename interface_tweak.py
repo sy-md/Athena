@@ -45,13 +45,13 @@ class calendar: #filter data for the calendar with parsing
             for x in range(len(data["note"])):
                if x > 5:
                    raise ValueError("sy: to big")
-           return calendar.calculation() 
+        return calendar.calculation() 
     def calculation():
         with open(my_cal, "r") as rd:
             data = json.load(rd)
 
-            srt = data["durations"][0]
-            end = data["durations"][1]
+            srt = data["duration"][0]
+            end = data["duration"][1]
             print("the times choosen")
             print(srt,end)
 
