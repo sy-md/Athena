@@ -28,7 +28,7 @@ class calendar: #filter data for the calendar with parsing
                 #data["note"] = entry
                 print(entry["category"])
                 with open (my_cal,"w") as reading:
-                    json.dump(entry,reading)
+                    json.dump(entry,reading,indent=4)
                 return calendar.vaildation()
 
         except FileNotFoundError:
@@ -45,8 +45,17 @@ class calendar: #filter data for the calendar with parsing
             for x in range(len(data["note"])):
                if x > 5:
                    raise ValueError("sy: to big")
+           return calendar.calculation() 
     def calculation():
-        pass
+        with open(my_cal, "r") as rd:
+            data = json.load(rd)
+
+            srt = data["durations"][0]
+            end = data["durations"][1]
+            print("the times choosen")
+            print(srt,end)
+
+
         """
         calculation.py
 
@@ -88,6 +97,7 @@ class calendar: #filter data for the calendar with parsing
             we also need LinkedList
 
         """
+
 
 
 class interface:
@@ -180,8 +190,6 @@ class interface:
         note = inquirer.text(message="add a new category:").execute()
 
 interface.start()
-
-
 
 #      
 #          if category == "add": # adding new category to calendar
