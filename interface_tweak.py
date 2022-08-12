@@ -10,12 +10,196 @@ from dataclasses import dataclass,asdict,field
 x_json = "mydb.json" # the backend 
 my_nbk = "display.json" #notebook db
 my_cal = "cal.json" # calendar db
+lnkls = "tessll.json"
+@dataclass
+class Node:
+    data: Dict[str,Dict[str,List | str]]
+    Next: Optional[None]
+
+    def linked(my_cal):
+        try:
+            with open(my_cal,"r") as rd:
+                data = json.load(rd)
+                red = {"duration" : "1wk",
+                    "type" : "Urgent",
+                    "time" : [],
+                    "timediff" : "days till"}
+
+                yellow = {"duration" : "2wk",
+                    "type" : "warning",
+                    "time" : [],
+                    "timediff" : "days till"}
+
+                green = {"duration" : "3wk",
+                    "type" : "still got time",
+                    "time" : [],
+                    "timediff" : "days till"}
+
+                pink = {"duration" : "4wk",
+                    "type" : "get planning",
+                    "time" : [],
+                    "timediff" : "days till"}
+
+                #build indivual node
+                Node.Next = ""
+                a = Node(red,Node.Next)
+                b = Node(yellow,Node.Next)
+                c = Node(green,Node.Next)
+                d = Node(pink,"null")
+
+                #chain them together
+                a.Next = b
+                b.Next = c
+                c.Next = d
+
+                #my linked list
+                my_l_lst = (asdict(a))
+
+                print("file was found ready for manip")
+                print(my_l_lst)
+
+                #grabe the data needed
+                srt = data["duration"][0][0]
+                end = data["duration"][0][1]
+
+                #parsed start date[month,day]
+                srt_mnth = srt[:3]
+                srt_day = srt[3:5]
+
+                #parsed end date[month,day]
+                end_mnth = end[:3]
+                end_day = end[3:5]
+
+                months = {"jan" : 31,"feb" : 28,"mar": 31,
+                  "apr" : 30,"may" : 31,"jun" : 30,
+                  "jul" : 31,"aug" : 31,"sept" : 30,
+                  "oct" : 31,"nov" : 30,"dec": 31}
+
+                """ # secound part of the function
+                    if i need to you can use this formula to convert negtive to postive
+                    postive = ( neg(nth) + ( pos(nth) * 2 ) )
+
+                    were also gonna have to ad that other feeatur the tuple featue
+                    (diff in days, diff in moths)
+                """
+
+                if srt_mnth in months:
+                    cap = ( months[srt_mnth] )
+                    f1 = ( (cap - int(srt_day)) + int(end_day) )
+                    f2 = ( (int(end_day)) - int(srt_day) )
+
+                    print("my tuple idea (f1,f2) ({},{})".format( f1,f2 ) )
+                    one_wk = 7
+                    same_mnth = (srt_mnth == end_mnth)
+                    diff_mnth = (srt_mnth != end_mnth)
+
+                    #if diff lst or eqt one_wk and same month
+                    #if diff lst or eqt onw_wk and diff f1 <= one_wk and diff months
+                    if ( f2 <= one_wk ) and (same_mnth):
+                        print(" same month :red urgent one week")
+                        print(f2)
+                    elif (f1<= one_wk ) and ( f1 <= one_wk and diff_mnth):
+                        print("diff months: red urgent onw week")
+                        print(f1)
+                    if ((f2 > one_wk) and (same_mnth) and (f2 <= (one_wk * 2)) ):
+                        print("same moths two week")
+                        result = f2
+
+#                        if len( b.data["time"] ) == 0:
+#                            print("put result in node")
+#                            b.data["time"].append(result)
+#                        elif ( f2 <= one_wk ) and (same_mnth):
+#                            rm = b.data["time"].pop(rm)
+#                            a.data["time"].append(rm)
+                        return(Node.render(my_l_lst,result))
+
+                    elif ((f1 > one_wk) and (f1 <= ( one_wk * 2 )) and (diff_mnth) ):
+                        print("diff moths two weeks")
+                        print(f1)
+                    if ((f2 > one_wk * 2) and (same_mnth) and (f2 <= (one_wk * 3)) ):
+                        print("same moths three weeks")
+                        print(f2)
+                    elif ((f1 > one_wk * 2 ) and (f1 <= ( one_wk * 3 )) and (diff_mnth) ):
+                        print("diff moths three weeks")
+                        print(f1)
+
+                    if ((f2 > one_wk * 3) and (same_mnth) and (f2 <= (one_wk * 4)) ):
+                        print("same moths four weeks")
+                        print(f2)
+                    elif ((f1 > one_wk * 3 ) and (diff_mnth) ):
+                        print("diff moths four +  weeks")
+                        print(f1)
+
+        except FileNotFoundError:
+            print("making the file")
+            with open(lnkls,"w") as snd:
+                json.dump(my_l_lst,snd,indent=3)
+
+    def render(my_l_lst,result):
+        print(my_l_lst)
+        print("made a the file")
+        with open ("tessll.json","w") as snd:
+            json.dump(my_l_lst,snd,indent=3)
+
+        with open("tessll.json","r") as rd:
+            data=json.load(rd)
+            print(data)
+            """
+            make new varibles that equal to the json links
+            like a = Node(red,NOde.next)
+            but to read json  do a = data[][][][][]
+            to the right one
+
+
+            """
+            if data["data"]["next"]["data"]["duration"] == "2wk":
+                print("put result in node")
+                data["data"]["next"]["data"]["duration"]["time"].append(result)
+                print("we could just use time to ")
+                print(data)
+#                b.data["time"].append(result)
+            elif ( f2 <= one_wk ) and (same_mnth):
+                pass
+#                rm = b.data["time"].pop(rm)
+#                a.data["time"].append(rm)
+                """
+                red = {"duration" : "1wk",
+                    "type" : "Urgent",
+                    "time" : [],
+                    "timediff" : "days till"}
+
+                yellow = {"duration" : "2wk",
+                    "type" : "warning",
+                    "time" : [],
+                    "timediff" : "days till"}
+
+                green = {"duration" : "3wk",
+                    "type" : "still got time",
+                    "time" : [],
+                    "timediff" : "days till"}
+
+                pink = {"duration" : "4wk",
+                    "type" : "get planning",
+                    "time" : [],
+                    "timediff" : "days till"}
+                """
+                """
+                all done borded tired aug04-aug05 00:22 15hr session
+                loggin off aug5 todo:
+                    * create liknked list
+                    * and add funcionality
+
+                PRINTS THE STATMENT AND THEN CHECK THE LINKED THE LIST OF IHAS FOR
+                EXAMPLE  SAEM MONTH THREE WEEKS {WARNINGN} THEN LOOK IN THE THE JSON
+                IF THAT WORD IS  THE JSON THEN PUT THE DATA IN THE THAT SLOT
+
+                """
 
 
 @dataclass
 class calendar: #filter data for the calendar with parsing
     duration: Optional[List[str]]
-    note: Optional[Dict[str,str]]
+    note:     Optional[Dict[str,str]]
     category: Optional[List[str]]
 
     def check_calendar(data,entry): #check during and after
@@ -41,63 +225,11 @@ class calendar: #filter data for the calendar with parsing
         print("Vaildating...")
         with open (my_cal,"r") as reading:
             data = json.load(reading)
-            print("checking for int")
+            print("checking for zize of message")
             for x in range(len(data["note"])):
                if x > 5:
                    raise ValueError("sy: to big")
-        return calendar.calculation() 
-    def calculation():
-        with open(my_cal, "r") as rd:
-            data = json.load(rd)
-
-            srt = data["duration"][0]
-            end = data["duration"][1]
-            print("the times choosen")
-            print(srt,end)
-
-
-        """
-        calculation.py
-
-        1.) take user data i,e {start date & end date} .split()
-        2.) parse the dates into actully dates
-        3.) compare start date to end date
-
-        {
-
-        red :
-            Duration: 1wk
-            type: Urgent
-            time : (st ,ed)
-            timediff: "days till",
-
-        yellow :
-            Duration: 2wks:
-
-            type: Urgent
-            time : (st ,ed)
-            timediff: "days till"
-
-
-        green :
-            Duration: 3wks
-            type: Urgent
-            time : (st ,ed)
-            timediff: "days till"
-
-
-        pink :
-            Duration: >3wks
-            type: Urgent
-            time : (st ,ed)
-            timediff: "days till"
-
-            }
-
-            we also need LinkedList
-
-        """
-
+        return(Node.linked(my_cal))
 
 
 class interface:
@@ -147,8 +279,8 @@ class interface:
         except FileNotFoundError:
             with open (opt[chs],'w') as send_cal:
                 json.dump(asdict(calendar([],{},[])),send_cal,indent=4)
-
             with open ( opt[chs] ,"r") as reading_cal:
+
                 data = json.load(reading_cal)
                 os.system("touch cal.json")
                 os.system("sleep 2")
@@ -158,13 +290,14 @@ class interface:
         #start the calendar program
         stt = inquirer.text(message="start: time|date ").execute()
         end = inquirer.text(message="end: time|date ").execute()
-        duration = (stt,end)
+        my_lst = (stt,end)
         #making anote
         msg = inquirer.text(message="note: ").execute()
         print(data["category"]) # []
 
         with open ("cal.json",'r') as rd:
             data = json.load(rd)
+
 
             if "add" not in data["category"]:
                 data["category"].append("add")
@@ -179,6 +312,8 @@ class interface:
             category = data["category"]
             data["note"][new_cat] = msg
             note = data["note"]
+            duration = data["duration"]
+            duration.insert(0,my_lst) #stack
             with open ("cal.json",'w') as update_cal:
                 json.dump(data,update_cal,indent=4)
 

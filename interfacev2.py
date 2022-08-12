@@ -3,9 +3,7 @@ from colorama import Back,Fore,Style,init
 import json,os,calendar,traceback
 from pprint import pprint
 from calendar import TextCalendar
-#/data/data/com.termux/files/home/Athena/atna_screen/new_examples/InquirerPy/examples
 
-#/data/data/com.termux/files/home/Athena/athena_apps/interface.py
 
 x_json = "mydb.json" # the backend 
 my_phone = "display.json" #notebook db
@@ -17,7 +15,7 @@ class interface():
         os.system("clear")
         os.system("figlet '              Athena' | lolcat -8")
         print("             Welcome back sy, What can I do for you\n")
-        os.system("cal -n3 | lolcat -8")
+        #os.system("cal -n3 | lolcat -8")
         
 #        TextCalendar.formatyear(self,2022, w=2, l=1, c=6, m=3)
 
