@@ -15,10 +15,11 @@ func main() {
     keepTrack()
     panicRecover()
 
-//   err := myStore("martell",int(18))
-//   if err != nil {
-//       f.Println(err)
-//   }
+    err := myStore("martell",int(18))
+    if err != nil {
+        f.Println(err)
+    }
+
 }
 
 /****************************************/
@@ -27,7 +28,7 @@ func keepTrack() {
     var tmp []int //caught 
     var ans int = 2 //anchor
 
-    //f.Print("type a number") // 2
+ /   //f.Print("type a number") // 2
     //f.Scan(&ans)
 
     defer func() {
@@ -70,7 +71,10 @@ type person struct {
     name string
     age int
 }
-
+/*
+funcation output8ng a error with the package using speical
+errors returnis 
+*/
 func myStore(name string, age int) error {
     if name == "" {
         return errors.New("need a name")
@@ -80,4 +84,4 @@ func myStore(name string, age int) error {
     }
     return nil
 }
-
+/****************************************/
