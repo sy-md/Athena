@@ -20,6 +20,10 @@ func main() {
         f.Println(err)
     }
 
+    mycont := container{data: []int{1,2,3,4,5}}
+    mycont.noptr(8) 
+    mycont.withptr(8)
+
 }
 
 /****************************************/
@@ -28,7 +32,7 @@ func keepTrack() {
     var tmp []int //caught 
     var ans int = 2 //anchor
 
- /   //f.Print("type a number") // 2
+    //f.Print("type a number") // 2
     //f.Scan(&ans)
 
     defer func() {
@@ -67,14 +71,14 @@ func panicRecover() {
     }
 }
 /****************************************/
-type person struct {
-    name string
-    age int
-}
 /*
 funcation output8ng a error with the package using speical
 errors returnis 
 */
+type person struct {
+    name string
+    age int
+}
 func myStore(name string, age int) error {
     if name == "" {
         return errors.New("need a name")
@@ -85,3 +89,21 @@ func myStore(name string, age int) error {
     return nil
 }
 /****************************************/
+/*
+pointer with recviers vs no pointer with reciver
+*/
+
+type container struct {
+    data []int
+}
+
+func(t container) noptr(n int) { //copy of and manipulation
+
+    t.data = append(t.data, n)
+    f.Printf("with no pointer: %v \n",t.data)
+}
+func(t *container) withptr(n int) { //manipulation
+
+    t.data = append(t.data, n)
+    f.Printf("with pointer: %v",t.data)
+}
