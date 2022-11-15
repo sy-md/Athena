@@ -38,6 +38,24 @@ func (l *linkedlist) add_end(val int) { // adding a node at the end of a linkedl
 
 }
 
+func (l *linkedlist) swap(swp int) { // 1,2,3,4
+	cur := l.head
+	tmp := l.head //dummy head
+
+	for cur != nil { //while
+		if cur.data == swp {
+			//f.Printf("cur and tmp are not the same {cur == tmp} -> %v: \n", cur == tmp) // false
+
+			l.head = tmp.nx // head is now 1
+			tmp.nx = nil    //tmp not longer has the linkedlist as nx
+			cur.nx = tmp    // give swp the target
+
+		}
+		cur = cur.nx
+	}
+
+}
+
 func (l *linkedlist) display() { // displaying the linkedlist
 	cur := l.head //current node
 
@@ -45,7 +63,7 @@ func (l *linkedlist) display() { // displaying the linkedlist
 		f.Printf("%v -->", cur.data)
 		cur = cur.nx
 	}
-	f.Printf("%v -->end", cur.data)
+	f.Printf("%v -->end \n", cur.data)
 }
 
 func main() {
@@ -56,4 +74,6 @@ func main() {
 	ll.display() // 1,2,3
 	ll.add_end(4)
 	ll.display() // 4,1,2,3
+	ll.swap(3)
+	ll.display() // 1,2,3,4
 }
