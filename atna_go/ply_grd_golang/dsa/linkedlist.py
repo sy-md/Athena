@@ -1,31 +1,79 @@
-class Node:
-    def __init__(self,data):
-        self.data = data
-        self.nx = None
+package main
 
-class mylist:
-    def __init__(self):
-        self.head = None
+import (
+	f "fmt"
+)
 
-    def insert(self, val):
-        nd = Node(val)
-        p = self.head
+type node struct { // my nodes [1,[2,[...]]]
+	data int
+	nx   *node
+}
+type linkedlist struct{ head *node }
 
-        if self.head == None:
-            self.head = nd
-        else:
-            while p.nx != None:
-                p = p.nx
-            p.nx = nd
+func (l *linkedlist) insert(num int) { // inserting node at end of linkedlist
+	nd := &node{data: num} //create a node
+	cur := l.head          //currenet node
 
+	if l.head == nil { //if no head make a head
+		l.head = nd
+	} else {
+		for cur.nx != nil { //find the next avaiable spot for the node
+			cur = cur.nx //ever node go to your next node
+		}
+		cur.nx = nd //makes last nodes next the new node
+	}
+}
 
+func (l *linkedlist) add_end(val int) { // adding a node at the end of a linkedlist
+	nd := &node{ //make the node
+		data: val,
+	}
+	cur := l.head // repersent the first node
+	nd.nx = cur   // make the new node the new head
+	l.head = nd   // then ofically make the new node the head
 
+	f.Printf("\nheads next before: %v", l.head.nx.data)     //1
+	f.Printf("\nadd new node at head: %v \n", l.head.data)  //4
+	f.Printf("heads new next after: %v \n", l.head.nx.data) //1
 
-if __name__ == "__main__":
-    kk = mylist()
-    kk.insert(1)
-    kk.insert(2)
-    kk.insert(3)
-    print("{}".format(kk.head.data))
-    print("{}".format(kk.head.nx.data))
-    print("{}".format(kk.head.nx.nx.data))
+}
+
+func (l *linkedlist) swap(swp int) { // 1,2,3,4
+	cur := l.head
+	tmp := l.head //dummy head
+
+	for cur != nil { //while
+		if cur.data == swp {
+			//f.Printf("cur and tmp are not the same {cur == tmp} -> %v: \n", cur == tmp) // false
+
+			l.head = tmp.nx // head is now 1
+			tmp.nx = nil    //tmp not longer has the linkedlist as nx
+			cur.nx = tmp    // give swp the target
+
+		}
+		cur = cur.nx
+	}
+
+}
+
+func (l *linkedlist) display() { // displaying the linkedlist
+	cur := l.head //current node
+
+	for cur.nx != nil {
+		f.Printf("%v -->", cur.data)
+		cur = cur.nx
+	}
+	f.Printf("%v -->end \n", cur.data)
+}
+
+func main() {
+	ll := linkedlist{}
+	ll.insert(1)
+	ll.insert(2)
+	ll.insert(3)
+	ll.display() // 1,2,3
+	ll.add_end(4)
+	ll.display() // 4,1,2,3
+	ll.swap(3)
+	ll.display() // 1,2,3,4
+}
