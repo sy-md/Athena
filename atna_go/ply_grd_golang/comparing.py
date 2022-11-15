@@ -1,5 +1,6 @@
-# filler for go package
+# filler for go package 
 #import
+# i like coding
 
 class kids: # classs
     def __init__(self,name,toy):
