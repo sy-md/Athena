@@ -19,6 +19,7 @@ type User struct {
   Pswd string `json:"password"`
   Email string `json:"email"`
 }
+type getFiles struct {file string}
 
 
 func resetDb() { // just reset the db
@@ -74,7 +75,18 @@ func logIn(ctx *gin.Context) { //if the creditnals are good welcome {grUpload}
   //if passwd and name match then show data - redirect to grUpload
   ctx.JSON(http.StatusOK, gin.H{usn:psw})     
 }
-func grUpload(ctx *gin.Context) {} //put the image in a q {hashing}
+func grUpload(ctx *gin.Context) { //put the image in a q {hashing}
+  form, _ := ctx.MultipartForm()
+  files := form.File["uploads"]
+
+  for _, file := range files {
+    log.Println(file.Filename)
+
+	// Upload the file to specific dst.
+	//c.SaveUploadedFile(file, dst)
+  }
+  ctx.String(http.StatusOK, fmt.Sprintf("%d files uploaded!", len(files)))
+}
 func hashing(ctx *gin.Context) {} // hasing for sercuity [psw,tokn,email]
 
 func index(c *gin.Context) {
@@ -95,7 +107,7 @@ func main() {
   router.LoadHTMLGlob("templates/*")
   router.POST("/create/:usn/:psw/:emal", signUp) // home page
   router.GET("/:usn/:psw", logIn) // home page
-  router.GET("/upload", grUpload) // home page
+  router.POST("/upload", grUpload) // home page
   router.GET("/index", index) 
   router.Run(":3000")
 }
