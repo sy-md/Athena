@@ -16,14 +16,11 @@ import (
 const myfile = "grd_db.json"
 
 type User struct {
-	Name    string `json:"username"`
-	Pswd    string `json:"password"`
-	Email   string `json:"email"`
-	Storage []byte `json:"file_strg"`
+	Name  string `json:"username"`
+	Pswd  string `json:"password"`
+	Email string `json:"email"`
 }
 type getFiles struct{ file string }
-
-//type getFiles struct{ file string }
 
 func resetDb() { // just reset the db
 	emptyFile, err := os.Create(myfile)
@@ -78,8 +75,24 @@ func logIn(ctx *gin.Context) { //if the creditnals are good welcome {grUpload}
 	//if passwd and name match then show data - redirect to grUpload
 	ctx.JSON(http.StatusOK, gin.H{usn: psw})
 }
-func grUpload(ctx *gin.Context) {} //put the image in a q {hashing}
-func hashing(ctx *gin.Context)  {} // hasing for sercuity [psw,tokn,email]
+func grUpload(ctx *gin.Context) { //put the image in a q {hashing}
+	form, _ := ctx.MultipartForm()
+	files := form.File["uploads"]
+
+	for _, file := range files { // grabs all and print the string
+		fmt.Printf("%T", file.Filename)
+
+		//you have to decode the images
+		//save them then
+		//then you manip them {probably use a goroutine }
+
+		// Upload the file to specific dst.
+		//c.SaveUploadedFile(file, dst)
+	}
+	ctx.String(http.StatusOK, fmt.Sprintf("%d files uploaded!", len(files)))
+}
+
+//func hashing(ctx *gin.Context) {} // hasing for sercuity [psw,tokn,email]
 
 func index(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.html", gin.H{
@@ -99,7 +112,7 @@ func main() {
 	router.LoadHTMLGlob("templates/*")
 	router.POST("/create/:usn/:psw/:emal", signUp) // home page
 	router.GET("/:usn/:psw", logIn)                // home page
-	router.GET("/upload", grUpload)                // home page
+	router.POST("/upload", grUpload)               // home page
 	router.GET("/index", index)
 	router.Run(":3000")
 }
