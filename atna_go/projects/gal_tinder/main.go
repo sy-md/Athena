@@ -75,20 +75,29 @@ func logIn(ctx *gin.Context) { //if the creditnals are good welcome {grUpload}
 	//if passwd and name match then show data - redirect to grUpload
 	ctx.JSON(http.StatusOK, gin.H{usn: psw})
 }
+
 func grUpload(ctx *gin.Context) { //put the image in a q {hashing}
 	form, _ := ctx.MultipartForm()
 	files := form.File["uploads"]
 
-	for _, file := range files { // grabs all and print the string
-		fmt.Printf("%T", file.Filename)
-
-		//you have to decode the images
-		//save them then
-		//then you manip them {probably use a goroutine }
-
-		// Upload the file to specific dst.
-		//c.SaveUploadedFile(file, dst)
+	file, err := os.Open(myfile)
+	if err != nil { // handle the error here
+		return
 	}
+
+	defer file.Close()
+
+	//endcode the data into readable json
+	for _, x := range files {
+		data, err := json.Marshal(x)
+		if err != nil {
+			fmt.Println(err)
+		}
+		//send to json dont know how to yet
+
+		ctx.JSON(http.StatusOK, gin.H{"file": data}) //display working on api
+	}
+
 	ctx.String(http.StatusOK, fmt.Sprintf("%d files uploaded!", len(files)))
 }
 
