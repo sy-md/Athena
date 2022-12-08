@@ -77,6 +77,7 @@ func logIn(ctx *gin.Context) { //if the creditnals are good welcome {grUpload}
 	//if passwd and name match then show data - redirect to grUpload
 	ctx.JSON(http.StatusOK, gin.H{usn: psw})
 }
+
 func grUpload(ctx *gin.Context) { //put the image in a q {hashing}
 	form, _ := ctx.MultipartForm()
 	files := form.File["uploads"]
