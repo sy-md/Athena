@@ -32,19 +32,14 @@ async def create_upload_files(uploads: List[UploadFile] = File(...)):
         tmp.append(x)
     return  [file.filename for file in tmp]
 
-
-
 @app.post("/signUp/")# sign up
-async def create_user(name: str = Form(), psw: str | int = Form()):
+async def create_user(name: str = Form(), psw: str or int = Form()):
     return { name : psw } 
 
 @app.post("/login/")# sign up
-async def get_user(name: str = Form(), psw: str | int = Form()):
+async def get_user(name: str = Form(), psw: str or int = Form()):
     return { name : psw }
-  
- 
-
-
+   
 # to run the server uvicorn main:app --reload
 
 if __name__ == "__main__":

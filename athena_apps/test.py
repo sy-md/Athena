@@ -1,17 +1,13 @@
 import json
 from dataclasses import dataclass, asdict
 
-
 class test:
-
-
     def func2():
         print("dataclasss callled meover")
 
     @dataclass
     class house:
         name: []
-
         try:
             def __post_init__(self):
  #               def check(): 
@@ -32,4 +28,11 @@ class test:
     with open ("cal.json", "w")as send:
         json.dump(fix,send)
 
-test.func2()
+#test.func2()
+
+
+
+def test():
+    print("something")
+
+test()
