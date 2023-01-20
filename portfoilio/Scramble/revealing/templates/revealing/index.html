@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<body>
+
+		<h1>Scramble Reveal</h1>
+
+		<form  method="post">
+			{% csrf_token %}
+  			<label for="fname">Type Phrase : </label>
+  			<input type="text" name="Phrase">
+  			<button type="submit">Submit</button>
+		</form>
+    
+		<div class="container"> <!--crate a div here ato rende the out scramble-->
+				{{data}}
+		</div>
+
+	</body>
+</html>

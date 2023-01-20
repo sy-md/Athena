@@ -1,0 +1,14 @@
+{
+  "fwd": {
+    "power": "",
+    "control": []
+  },
+  "mid": {
+    "power": "",
+    "control": []
+  },
+  "aft": {
+    "power": "",
+    "control": []
+  }
+}
