@@ -12,8 +12,8 @@ my_cal = "cal.json" # calendar db
 class interface():
      
      def start():
-        os.system("clear")
-        os.system("figlet '              Athena' | lolcat -8")
+        os.system("cls")
+        os.system("figlet '              Athena' | lolcat")
         print("             Welcome back sy, What can I do for you\n")
         #os.system("cal -n3 | lolcat -8")
         
