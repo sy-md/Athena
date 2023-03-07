@@ -1,4 +1,0 @@
-https://dash.plotly.com/sharing-data-between-callbacks
-
-Dash Callbacks must never modify variables outside of their scope. It is not safe to modify any global variables. 
-This chapter explains why and provides some alternative patterns for sharing state between callbacks.
