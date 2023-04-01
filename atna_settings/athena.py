@@ -47,14 +47,14 @@ file_one =  bash.bashrc
 
 def login_screen():
     user = input('username: ')
-    if user == ('mrcnotes'):
+    if user == ('admin'):
         print ('')
-    elif user != ('mrcnotes'):
+    elif user != ('admin'):
         return(end())
         pswd == input('password: ')
-    if pswd == ('121200mdcD'):
+    if pswd == ('0000'):
         return(options())
-    elif pswd != ('121200mdcD'):
+    elif pswd != ('0000'):
         return(end) 
             
 
