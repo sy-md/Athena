@@ -7,21 +7,35 @@ pc = {
 
    "backend" : {
       "etc" : "/etc/",
-      "docs" : "/usr/share/doc/",
+      "docs" : "/usr/share/doc/"
    },
-   "tomorrowland": {
-      "zsh" :f"/{comp_home}/.zsh",
+
+   "home" : {
+      "zsh" :f"/{comp_home}/.zshrc",
       "ssh" :f"/{comp_home}/.ssh",
       "config" :f"/{comp_home}/.config",
-      "oh-my-zsh" :f"/{comp_home}/.oh-my-zsh",
+      "oh-my-zsh" :f"/{comp_home}/.oh-my-zsh"
+   },
+
+   "tomorrowland": {
+      "settings" : f"/{comp_home}/Athena/atna_settings",
+      "go" : f"/{comp_home}/Athena/atna_go",
+      "screen" : f"/{comp_home}/Athena/atna_screen",
+      "apps" : f"/{comp_home}/Athena/atna_settings",
+      "portfoilio" : f"/{comp_home}/Athena/atna_portfoilio",
+
 
    },
 
 }
 
 def main():
-   # ask the user for the whaoami
    print("starting")
+   check_a_system()
+   system_check()
+   #os.path.exists(path) dir
+   #os.path.isfile(path) file
+
 
 def get_list(key):
    """
@@ -47,7 +61,6 @@ def check_a_system():
 def get_system():
    """
       used to scan the whole tomorrowland system
-
    """
    make_list = []
    for key in pc:
@@ -59,15 +72,10 @@ def system_check():
    """
       check system wide pc
       theis will check pc[key] for x in its cvalues
-
    """
    data = get_system()
    for x in data:
       exist = os.path.exists(x)
       print(f"it is {exist} that path {x} exists")
 
-
-#check_a_system()
-system_check()
-#os.path.exists(path) dir
-#os.path.isfile(path) file
+main()
