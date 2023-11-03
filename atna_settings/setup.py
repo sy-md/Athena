@@ -31,7 +31,7 @@ pc = {
 
 def main():
    print("starting")
-   check_a_system()
+   #check_a_system()
    system_check()
    #os.path.exists(path) dir
    #os.path.isfile(path) file
