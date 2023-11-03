@@ -2,6 +2,7 @@ import os
 
 my_user = "sy"
 comp_home = f"home/{my_user}"
+phone = f"data/data/com.termux/files"
 
 pc = {
 
@@ -24,11 +25,46 @@ pc = {
       "apps" : f"/{comp_home}/Athena/atna_settings",
       "portfoilio" : f"/{comp_home}/Athena/atna_portfoilio",
 
-
    },
 
 }
+phone = {
 
+   "backend" : {
+      "etc" : f"{phone}/usr/etc/",
+      "docs" : f"{phone}/usr/share/doc/"
+   },
+
+   "home" : {
+      "zsh" :f"/{phone}/home/.zshrc",
+      "ssh" :f"/{phone}/home/.ssh",
+      "config" :f"/{phone}/home/.config",
+      "oh-my-zsh" :f"/{phone}/home/.oh-my-zsh"
+   },
+
+   "tomorrowland": {
+      "settings" : f"/{phone}/home/Athena/atna_settings",
+      "go" : f"/{phone}/home/Athena/atna_go",
+      "screen" : f"/{phone}/home/Athena/atna_screen",
+      "apps" : f"/{phone}/home/Athena/atna_settings",
+      "portfoilio" : f"/{phone}/home/Athena/atna_portfoilio",
+
+   },
+
+class phone_cli:
+   """
+      used for organizing the phone code
+
+   """
+   pass
+
+class pc_cli:
+   """
+      used for organizing the phone code
+
+   """
+
+   pass
 def main():
    print("starting")
    #check_a_system()
@@ -79,3 +115,21 @@ def system_check():
       print(f"it is {exist} that path {x} exists")
 
 main()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
