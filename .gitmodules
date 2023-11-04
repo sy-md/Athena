@@ -1,3 +1,5 @@
 [submodule "atna_settings/atna_conf_dotfiles"]
 	path = atna_settings/atna_conf_dotfiles
 	url = https://github.com/sy-md/atna_conf_dotfiles.git
+[submodule "athena_apps/data-structures-algorithms-python"]
+	url = https://github.com/sy-md/data-structures-algorithms-python.git
