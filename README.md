@@ -23,3 +23,5 @@ sy me will be the programme
 
 also huge thing to think about ,gitmdules vs me building a thing for my self with Athena scanning my entire systems
 
+https://youtu.be/gSlXo2iLBro?si=Y-2fIoJRRH6SFlgI
+
