@@ -20,3 +20,6 @@ casey, frank  will be the the buidlers trying new things and being optimistic an
 
 sy me will be the programme
 
+
+also huge thing to think about ,gitmdules vs me building a thing for my self with Athena scanning my entire systems
+
