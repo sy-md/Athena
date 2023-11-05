@@ -1,8 +1,6 @@
 [submodule "atna_settings/atna_conf_dotfiles"]
 	path = atna_settings/atna_conf_dotfiles
 	url = https://github.com/sy-md/atna_config_dotfiles.git
-[submodule "athena_apps/data-structures-algorithms-python"]
-	url = https://github.com/sy-md/data-structures-algorithms-python.git
 [submodule "atna_settings/atna_eng/ohmyzsh"]
 	url = https://github.com/ohmyzsh/ohmyzsh.git
 [submodule "atna_settings/atna_eng/powerlevel10k"]
