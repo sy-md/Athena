@@ -12,3 +12,6 @@
 [submodule "atna_settings/atna_eng/atna_conf_dotfiles"]
 	path = atna_settings/atna_eng/atna_conf_dotfiles
 	url = https://github.com/sy-md/nvim.git
+[submodule "atna_music/sy-music"]
+	path = atna_music/sy-music
+	url = https://github.com/sy-md/sy-music.git
