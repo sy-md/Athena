@@ -7,3 +7,6 @@
 
 [submodule "atna_settings/atna_eng/powerlevel10k"]
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule "atna_settings/atna_eng/ohmyzsh"]
+	path = atna_settings/atna_eng/ohmyzsh
+	url = https://github.com/ohmyzsh/ohmyzsh.git
