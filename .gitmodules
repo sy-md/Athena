@@ -3,7 +3,7 @@
 
 	path = atna_settings/atna_eng/zsh-syntax-highlighting
 [submodule "atna_music/sy-music"]
-	path = atna_music/atna_music
+	path = atna_music/sy-music
 	url = https://github.com/sy-md/sy-music.git
 
 [submodule "atna_settings/atna_eng/powerlevel10k"]
