@@ -25,3 +25,5 @@ also huge thing to think about ,gitmdules vs me building a thing for my self wit
 
 https://youtu.be/gSlXo2iLBro?si=Y-2fIoJRRH6SFlgI
 
+https://phoenixnap.com/kb/git-submodule#ftoc-heading-10
+
