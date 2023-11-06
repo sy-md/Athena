@@ -13,5 +13,7 @@
 [submodule "atna_settings/atna_eng/ohmyzsh"]
 	path = atna_settings/atna_eng/ohmyzsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
+
 [submodule "atna_settings/atna_eng/atna_conf_dotfiles"]
+	path = atna_settings/atna_eng/atna_conf_dotfiles
 	url = https://github.com/sy-md/atna_config_dotfiles.git
