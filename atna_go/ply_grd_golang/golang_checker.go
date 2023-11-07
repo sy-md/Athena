@@ -12,8 +12,13 @@ type BarDB struct {
 	id     []Person
 	Member []string
 }
+/*
 
+this function adds a list of people to the db
+
+*/
 func (d *BarDB) add(list_of_people []Person) {
+
 	var seen = make(map[Person]bool)
 
 	for x := range list_of_people {
