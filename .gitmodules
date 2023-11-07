@@ -7,16 +7,14 @@
 	path = atna_settings/atna_eng_zsh/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
 
-[submodule "atna_settings/atna_eng_zsh/ohmyzsh"]
+[submodule "ohmyzsh"]
 	path = atna_settings/atna_eng_zsh/ohmyzsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
 
-####################################################################################
 [submodule "atna_config_dotfiles"]
 	path = atna_settings/atna_config_dotfiles
 	url = https://github.com/sy-md/atna_config_dotfiles.git
 
-####################################################################################
 [submodule "sy-music"]
 	path = atna_music/sy-music
 	url = https://github.com/sy-md/sy-music.git
@@ -26,4 +24,3 @@
 	url = https://github.com/sy-md/data-structures-algorithms-python.git
 
 
-####################################################################################
