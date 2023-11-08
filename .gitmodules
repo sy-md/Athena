@@ -1,19 +1,24 @@
-[submodule "atna_settings/atna_eng/zsh-syntax-highlighting"]
-	path = atna_settings/atna_eng/zsh-syntax-highlighting
+####################################################################################
+[submodule "zsh-syntax-highlighting"]
+	path = atna_settings/atna_eng_zsh/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 
-[submodule "atna_music/sy-music"]
+[submodule "powerlevel10k"]
+	path = atna_settings/atna_eng_zsh/powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git
+
+[submodule "ohmyzsh"]
+	path = atna_settings/atna_eng_zsh/ohmyzsh
+	url = https://github.com/ohmyzsh/ohmyzsh.git
+
+[submodule "atna_config_dotfiles"]
+	path = atna_settings/atna_config_dotfiles
+	url = https://github.com/sy-md/atna_config_dotfiles.git
+
+[submodule "sy-music"]
 	path = atna_music/sy-music
 	url = https://github.com/sy-md/sy-music.git
 
-[submodule "atna_settings/atna_eng/powerlevel10k"]
-	path = atna_settings/atna_eng/powerlevel10k
-	url = https://github.com/romkatv/powerlevel10k.git
-
-[submodule "atna_settings/atna_eng/ohmyzsh"]
-	path = atna_settings/atna_eng/ohmyzsh
-	url = https://github.com/ohmyzsh/ohmyzsh.git
-
-[submodule "atna_settings/atna_eng/atna_config_dotfiles"]
-	path = atna_settings/atna_eng/atna_config_dotfiles
-	url = https://github.com/sy-md/atna_config_dotfiles.git
+[submodule "DSA"]
+	path = atna_apps/data-structures-algorithms-python
+	url = https://github.com/sy-md/data-structures-algorithms-python.git
