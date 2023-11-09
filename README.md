@@ -30,19 +30,10 @@ https://phoenixnap.com/kb/git-submodule#ftoc-heading-10
 https://youtu.be/e2IbNHi4uCI?si=j5EmsWbNS2ugbR0U
 
 
-after some pract the finally thoguht are this:
 
-TomorrowLand - main
 
-programmer:
-    Athena
+clean music - test if change backgrd with phone
 
-config:
-    casey
+check youtube downloader the offial one and see if your can use it with cmus
 
-test:
- if you are checkout out in tomorowland
- athena commit
-    then
- casey commit
-
+changing i3wm wallpaper with iphone

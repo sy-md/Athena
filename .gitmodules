@@ -20,5 +20,12 @@
 	url = https://github.com/sy-md/sy-music.git
 
 [submodule "DSA"]
-	path = atna_apps/data-structures-algorithms-python
+	path = athena_apps/data-structures-algorithms-python
 	url = https://github.com/sy-md/data-structures-algorithms-python.git
+[submodule "Youtube_api"]
+	path = athena_apps/Youtube_api
+	url = https://github.com/sy-md/Youtube_api.git
+
+[submodule "i3wm_setup"]
+	path = athena_apps/i3wm_setup
+	url = https://github.com/sy-md/i3wm_setup.git
