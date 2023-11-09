@@ -36,6 +36,3 @@
 	path = athena_apps/Youtube_api
 	url = https://github.com/sy-md/Youtube_api.git
 
-[submodule "i3wm_setup"]
-	path = athena_apps/i3wm_setup
-	url = https://github.com/sy-md/i3wm_setup.git
