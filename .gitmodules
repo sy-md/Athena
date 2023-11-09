@@ -1,4 +1,4 @@
-####################################################################################
+###############################zsh##################################################
 
 [submodule "zsh-syntax-highlighting"]
 	path = atna_settings/atna_eng_zsh/zsh-syntax-highlighting
@@ -12,11 +12,17 @@
 	path = atna_settings/atna_eng_zsh/ohmyzsh
 	url = https://github.com/ohmyzsh/ohmyzsh.git
 
-####################################################################################
+##############################dotfiles##############################################
 
 [submodule "atna_config_dotfiles"]
 	path = atna_settings/atna_config_dotfiles
 	url = https://github.com/sy-md/atna_config_dotfiles.git
+
+[submodule "i3wm_setup"]
+	path = athena_apps/i3wm_setup
+	url = https://github.com/sy-md/i3wm_setup.git
+
+##################################others############################################
 
 [submodule "sy-music"]
 	path = atna_music/sy-music
@@ -30,6 +36,3 @@
 	path = athena_apps/Youtube_api
 	url = https://github.com/sy-md/Youtube_api.git
 
-[submodule "i3wm_setup"]
-	path = athena_apps/i3wm_setup
-	url = https://github.com/sy-md/i3wm_setup.git
