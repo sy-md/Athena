@@ -36,3 +36,6 @@
 	path = athena_apps/Youtube_api
 	url = https://github.com/sy-md/Youtube_api.git
 
+[submodule "atna_settings/copilot.vim"]
+	path = atna_settings/copilot.vim
+	url = https://github.com/github/copilot.vim.git
