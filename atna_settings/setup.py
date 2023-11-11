@@ -66,7 +66,9 @@ class pc_cli:
    def check_a_system(trg):
       """
          check one thing like pc.backend{...}
-         reuturn [of paths] and cxheck folers
+         reuturn [of paths] and check folders
+         for existance and create them if not
+
       """
       search = trg
       data = pc_cli.get_list(search) # --> [keys of the pc {search}]
@@ -80,7 +82,8 @@ class pc_cli:
 
    def get_system():
       """
-         used to scan the whole tomorrowland system
+         used to scan the whole Tomorowland
+
       """
       make_list = []
       for key in pc:
@@ -98,4 +101,5 @@ class pc_cli:
          exist = os.path.exists(x)
          print(f"it is {exist} that path {x} exists")
 
-pc_cli.check_a_system("home")
+if __name__ == "__main__":
+   pc_cli.check_a_system("home")
