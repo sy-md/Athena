@@ -1,7 +1,7 @@
 import os,json
 
-links = "/data/data/com.termux/files/home/Athena/athena_apps/Youtube_api/output/cleaned.json"
-dst = "/data/data/com.termux/files/home/Athena/athena_music"
+links = "../Youtube_api/output/cleaned.json"
+dst = "."
 
 with open(links, "r") as mylks:
     data = json.load(mylks)
