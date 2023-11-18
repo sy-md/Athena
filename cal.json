@@ -1,5 +1,15 @@
 {
-    "duration": [],
-    "note": {},
-    "category": []
+    "duration": [
+        [
+            "",
+            ""
+        ]
+    ],
+    "note": {
+        "": ""
+    },
+    "category": [
+        "add",
+        ""
+    ]
 }
