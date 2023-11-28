@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-char greet = "Hello, world!";
+char greet[] = "Hello, world!";
 
 int main(void)
 {
