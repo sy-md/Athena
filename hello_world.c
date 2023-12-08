@@ -112,8 +112,28 @@ lifetimes of variables
 	- allocated
 	- thread
 	- register
+ 
+  int myNumbers[4] = {25, 50, 75, 100};
+  int *ptr = myNumbers;
+  int i;
+
+  for (i = 0; i < 4; i++) {
+    printf("[Pointer Method] --> %d: i is %d\n", *(ptr + i), i);
+  }
+    // same as
+  for (i = 0; i < 4; i++) {
+    printf("[Array calling Method] --> %d: i is %d\n", myNumbers[i],i);
+  }
+  return 0;
+}
+
+
+
+ 
 
 */
+
+
 
 
 
