@@ -1,3 +1,1 @@
-253/24 id the raspi  4
-
-
+git clone https://github.com/sy-md/i3wm_setup.git
