@@ -37,3 +37,6 @@ clean music - test if change backgrd with phone
 check youtube downloader the offial one and see if your can use it with cmus
 
 changing i3wm wallpaper with iphone
+
+
+blog faceboook things check it out https://www.jcchouinard.com/post-to-groups-using-facebook-graph-api-python/
