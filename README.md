@@ -40,3 +40,5 @@ changing i3wm wallpaper with iphone
 
 
 blog faceboook things check it out https://www.jcchouinard.com/post-to-groups-using-facebook-graph-api-python/
+
+july 9th 2022
