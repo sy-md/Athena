@@ -22,28 +22,35 @@ int main(void) {
     return 0;
 };
 
-
 int LinkListTest() {
 	/* 
-		given a array of num 1,2,3 create a linklist
+		
 		1.) make a struct that builds a node
-		2.) mkae a struct that builds a linklist{empty}
+		2.) make a struct that builds a linklist{empty}
 		3.) create a node and assign it to the head out the linkedlist
 		4.) see if you can create another node that is assigned to the heads next
-	
+        Questions: where do i use the tmp method
 	*/
-	struct linkedlist lst; // create a linkedlist
+    
+    // create a linkedlist
+	struct linkedlist lst; 
 	
-	struct node nd = {1, NULL};  // create a node
+    // create a node
+	struct node nd = {1, NULL};  
 	struct node ndd = {2, NULL};
 	
-	lst.head = &nd; // assign a node the a pos in the linkedlist
+    // assign a node the a pos in the linkedlist
+	lst.head = &nd; 
 	lst.head->next = &ndd;
     lst.head->next->prev = &nd;
 	
-	printf("%d ->",lst.head->val);
-	printf("%d ->",lst.head->next->val);
-    printf("<- %d",lst.head->next->prev->val);
+    //printing the nodes
+	printf("%d->",lst.head->val);
+	printf("%d->",lst.head->next->val);
+    printf("\n");
+
+    // displaying witch node is prev of which node
+    printf("prev of node %d is %d", lst.head->next->val,lst.head->next->prev->val);
 
 };
 
