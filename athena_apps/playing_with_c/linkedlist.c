@@ -45,8 +45,17 @@ int main() {
 
 };
 
+/* 
+  try looking up the free() function youll be usin this when
+  wanted to point to another node for example:
 
+  1->2->3
+  make 1's next be 3
+  so youll use free() to somehow create
+  1->3
+  
 
+*/
 
 
 
