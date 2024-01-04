@@ -3,7 +3,7 @@
 #include <stdlib.h> // needed for using malloc()
 
 void cycle_linklist();
-void insert();
+void push();
 
 struct node {
   int val;
