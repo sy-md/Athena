@@ -1,23 +1,22 @@
->>> a1 = 10000
->>> a2 = 0
->>> a3 = 2050
->>> a4 = 100
->>> a5 = 1800
->>> ans_6 = (a1+a2+a3+a4+a5)
->>> a7 = 0
->>> a8 = 2700
->>> a9 = 7500
->>> ans_10 = (a7+a8+a9)
->>> a11 = (ans_6 - ans_10)
->>> a12 = 5700
->>> a13 (a11 % a12)
+checking_one = 0
+misc = 375
+annunal = 45000
+monthly = (annunal / 12)
+biweekly = ((monthly / 2)- misc)
 
->>> a13 = (a11 % a12)
->>> a13
-3750
->>> a13 = (a11 / a12)
->>> a13
-0.6578947368421053
->>> a13 = (a12 / a11)
->>> a13
-1.52
+checking_one = (biweekly)
+print(checking_one)
+
+amt = 456
+final = ( ((checking_one + amt) - checking_one) / checking_one  * 100 )
+"""
+decrase algo = -->  ((amt / checking)*100  )
+incrase algo = -->  (( (checking + amt) - checking ) / checking * 100  )
+
+"""
+print( final )
+
+
+diff = ( ((amt / checking_one)* 100) )
+decrease =  ( ((checking_one - amt) / checking_one * 100) )
+print("the diff/you took is {}% and the decrease is {}%".format(int(diff),100 - int(decrease)))
