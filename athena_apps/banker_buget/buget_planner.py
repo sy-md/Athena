@@ -1,4 +1,11 @@
+#import matplotlib.pyplot as plt
+
+#plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
+#plt.axis((0, 6, 0, 20))
+#plt.show()
+
 checking_one = 0
+
 misc = 375
 annunal = 45000
 monthly = (annunal / 12)
@@ -10,7 +17,7 @@ print(checking_one)
 amt = 456
 final = ( ((checking_one + amt) - checking_one) / checking_one  * 100 )
 """
-decrase algo = -->  ((amt / checking)*100  )
+decrase a->  ((amt / checking)*100  )
 incrase algo = -->  (( (checking + amt) - checking ) / checking * 100  )
 
 """
