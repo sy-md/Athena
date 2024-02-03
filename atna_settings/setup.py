@@ -96,10 +96,30 @@ class pc_cli:
          check system wide pc
          theis will check pc[key] for x in its cvalues
       """
-      data = get_system()
+      data = pc_cli.get_system()
       for x in data:
          exist = os.path.exists(x)
          print(f"it is {exist} that path {x} exists")
 
 if __name__ == "__main__":
    pc_cli.check_a_system("home")
+   pc_cli.check_a_system("tomorrowland")
+   pc_cli.system_check()
+
+
+"""
+cant git push or pull because it kees asking for your user name 
+- git remote -v (check fir github instead of https)
+- git remote set-url origin git@github.com:your-username/your-repository.git (reset upstream)
+- ssh -T git@github.com test connections
+
+run a huge update and upgrade
+
+first thing i need is ohmyzsh and zsh 
+1.) sudo apt install zsh
+2.) git submodule update --init . in the atna_eng_zsh folder
+2.) git submodule update --init . in the atna_config_dotfiles folder
+    -  cp -rf .zshrc to /sy folder 
+
+
+"""
