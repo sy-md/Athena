@@ -1,10 +1,10 @@
 import plotly.graph_objects as go
-import plotly.express as px
+#import plotly.express as px
 import pandas as pd
 from plotly.subplots import make_subplots 
-from dash import Dash,html,dcc
+#from dash import Dash,html,dcc
 
-app = Dash(__name__)
+#app = Dash(__name__)
 
 
 fig = make_subplots(rows=1,cols=2)
@@ -85,17 +85,17 @@ fig.add_trace( # the trendline
 
 fig.update_layout(height=600,width=900)
 
-app.layout = html.Div(children=[
-    html.h1(children="fdhdfkjsdhf"),
+#app.layout = html.Div(children=[
+#    html.h1(children="fdhdfkjsdhf"),
 
-    dcc.Graph(
-        id="example1",
-        figure=fig
-    )
-])
+#    dcc.Graph(
+#        id="example1",
+#       figure=fig
+#    )
+#])
 if __name__ == "__main__":
-    app.run(debug=True)
-#fig.show()
+#    app.run(debug=True)
+    fig.show()
 #print(df)
 #print(dfp)
 
