@@ -33,3 +33,6 @@
 [submodule "atna_settings/copilot.vim"]
 	path = atna_settings/copilot.vim
 	url = https://github.com/github/copilot.vim.git
+[submodule "atna_settings/i3wm_setup"]
+	path = atna_settings/i3wm_setup
+	url = https://github.com/sy-md/i3wm_setup.git
