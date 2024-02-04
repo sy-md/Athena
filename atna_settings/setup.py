@@ -121,5 +121,8 @@ first thing i need is ohmyzsh and zsh
 2.) git submodule update --init . in the atna_config_dotfiles folder
     -  cp -rf .zshrc to /sy folder 
 
+setting up neovim
+
+
 
 """
