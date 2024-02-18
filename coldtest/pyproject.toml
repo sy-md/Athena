@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "coldtest"
+version = "0.1.0"
+description = ""
+authors = ["sy-md <mdorsetti733@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+dash = "^2.15.0"
+plotly = "^5.18.0"
+pandas = "^2.2.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,7 +1,3 @@
-BT = BlueTooth Thermometer,,,Setup:,Thermocouples taped inside to top back of screens,,,,,,,
-TC = Thermocouple,,,,Bluetooth Thermometers hanging inside on opposite side from heater,,,,,,,
-CPU = Balena-reported CPU Temp,,,,"10"" Heater running at 12VDC (1A, 24W), 12"" Heater at 24VDC (3.5A, 85W) ",,,,,,,
-,,,,Intercoms have Internet and Insulation,,,,,,,
 Time,Chamber Temp (BT),Chamber Temp (TC-2),10” Temp (BT),10” Temp (TC-3),10” Temp (CPU),10” Current,12” Temp (BT),12” Temp (TC-4),12” Temp (CPU),12” Current,Intercom Status
 3:30,-36.5,-40.1,-24.8,-19.1,-6,1.3,7.1,30.3,19,3.72,Rebooting
 3:34,-36.5,-40.2,-25.1,-19.1,-5,1.3,7.1,30.5,22,3.7,Online
