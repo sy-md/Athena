@@ -60,11 +60,11 @@ fig = make_subplots(rows=4,cols=2)
 
 # row 1 with cols 1 bluetooth temp
 fig.add_trace( 
-    go.scatter(x=data['Time'], y=bluetooth_temp["12temp_bt_d1"], name='12" bt',mode='lines'),
+    go.scatter(x=data['Time'], y=bluetooth_temp["12Temp_bt_d1"], name='12" bt',mode='lines'),
     row=1, col=1)
 
 fig.add_trace( 
-    go.scatter(x=data['Time'], y=bluetooth_temp["10temp_bt_d1"], mode='lines'),
+    go.scatter(x=data['Time'], y=bluetooth_temp["10Temp_bt_d1"], mode='lines'),
     row=1, col=1)
 
 fig.add_trace( 
@@ -73,7 +73,7 @@ fig.add_trace(
 
 ### row 1 with cols 2 thermocouple temp
 fig.add_trace( 
-    go.scatter(x=data['Time'], y=thermocouple_temp["12temp_tc_d1"], mode='lines'),
+    go.scatter(x=data['Time'], y=thermocouple_temp["12Temp_tc_d1"], mode='lines'),
     row=1, col=2)
 
 fig.add_trace( 
@@ -86,11 +86,11 @@ fig.add_trace(
 
 ### row 2 with cols 1 cpu temp
 fig.add_trace( 
-    go.scatter(x=data['Time'], y=cpu_temp["12temp_cpu_d1"], mode='lines'),
+    go.scatter(x=data['Time'], y=cpu_temp["12Temp_cpu_d1"], mode='lines'),
     row=2, col=1)
 
 fig.add_trace( 
-    go.scatter(x=data['Time'], y=cpu_temp["10temp_cpu_d1"], mode='lines'),
+    go.scatter(x=data['Time'], y=cpu_temp["10Temp_cpu_d1"], mode='lines'),
     row=2, col=1)
 
 ### row 2 with cols 2 current
@@ -104,11 +104,11 @@ fig.add_trace(
 
 # row 3 with cols 1 bluetooth temp
 fig.add_trace( 
-    go.scatter(x=data2['Time'], y=bluetooth_temp["12temp_bt_d2"], mode='lines'),
+    go.scatter(x=data2['Time'], y=bluetooth_temp["12Temp_bt_d2"], mode='lines'),
     row=3, col=1)
 
 fig.add_trace( 
-    go.scatter(x=data2['Time'], y=bluetooth_temp["10temp_bt_d2"], mode='lines'),
+    go.scatter(x=data2['Time'], y=bluetooth_temp["10Temp_bt_d2"], mode='lines'),
     row=3, col=1)
 
 fig.add_trace(
@@ -117,7 +117,7 @@ fig.add_trace(
 
 ### row 3 with cols 2 thermocouple temp
 fig.add_trace( 
-    go.scatter(x=data2['Time'], y=thermocouple_temp["12temp_tc_d2"], mode='lines'),
+    go.scatter(x=data2['Time'], y=thermocouple_temp["12Temp_tc_d2"], mode='lines'),
     row=3, col=2)
 
 fig.add_trace( 
@@ -130,11 +130,11 @@ fig.add_trace(
 
 ### row 4 with cols 1 cpu temp
 fig.add_trace(
-    go.scatter(x=data2['Time'], y=cpu_temp["12temp_cpu_d2"], mode='lines'),
+    go.scatter(x=data2['Time'], y=cpu_temp["12Temp_cpu_d2"], mode='lines'),
     row=4, col=1)
 
 fig.add_trace(
-    go.scatter(x=data2['Time'], y=cpu_temp["10temp_cpu_d2"], mode='lines'),
+    go.scatter(x=data2['Time'], y=cpu_temp["10Temp_cpu_d2"], mode='lines'),
     row=4, col=1)
 
 ### row 4 with cols 2 current
