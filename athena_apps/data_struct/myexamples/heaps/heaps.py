@@ -12,6 +12,7 @@ so i minheap
 
 """
 
+import heapq
 import json
 from typing import Optional
 
@@ -20,42 +21,39 @@ class WithLibraryHeapq:
 
 class WithoutLibraryHeap:
     def __init__(self, capacity=10) -> None:
-        self.storage = [0] * capacity # list to store the elements of the heap
+        self.storage = [] # list to store the elements of the heap
         self.capacity = capacity # maximum number of elements the heap can hold
         self.size = 0 # number of actually elements in the heap
 
     def insert(self, value):
-        if self.size == 0:
-            self.storage[self.size] = value
+        if self.size == self.capacity:
+            WithoutLibraryHeap.display(self)
+        else:        
+            self.storage.append(value)
             self.size += 1
             print(f"inserted {value} into the heap")
-            print("before heapify",self.storage)
+            print(f"before heapify {self.storage}")
+            WithoutLibraryHeap.heapify(self)
 
-        else: 
-            if self.size < self.capacity: # meaning the heap is not empty
-                # insert the value at the next available index
-                #then increase the size of the heap
-                self.storage[self.size] = value
-                self.size += 1
-                print(f"inserted {value} into the heap size is{self.size}")
-                print("before heapify",self.storage)
-                return WithoutLibraryHeap.heapify(self) 
+    def heapify(self): # bubble up the newly added node to the correct position
+        """
+        cur is the index of the current node
+        the parent of the node at index i is at index (cur-1)//2
+        the left child of the node at index i is at index 2*cur + 1
+        the right child of the node at index i is at index 2*cur + 2
+        
+        """
 
-    def heapify(self):
-        """
-            heapify mean when run this method,
-            the heap will be put  in the correct order
-        """
-        #if self.storage[self.size] == 1:
-        #else:
-        #grab the last added node and check for if smaller the cur root
-        cnt = self.size
-        root = self.storage[0]
-        while root >= self.storage[cnt-1]:
+
+        if self.size == 1:
+            return WithoutLibraryHeap.display(self)
+        
+        cnt = self.size -1
+        while self.storage[cnt -1] > self.storage[cnt]:
             if cnt <= 0:
                 break
-            if self.storage[cnt-1] < self.storage[cnt -2]:
-                self.storage[cnt-1], self.storage[cnt -2] = self.storage[cnt-2], self.storage[cnt-1]
+            if self.storage[cnt] < self.storage[cnt -1]:
+                self.storage[cnt], self.storage[cnt -1] = self.storage[cnt-1], self.storage[cnt]
             cnt -= 1
 
 
@@ -63,7 +61,7 @@ class WithoutLibraryHeap:
             print("cnt-1",self.storage[cnt-1]) # 7
             print("cnt-2",self.storage[cnt-2]) # 10
 
-        return WithoutLibraryHeap.display(self)
+        #return WithoutLibraryHeap.display(self)
     def display(self):
         payload = {
             "storage": self.storage,
@@ -75,8 +73,7 @@ class WithoutLibraryHeap:
         if self.size >= self.capacity:
             payload["error"] = "the heaps capacity full"
         with open(json_file, "w") as myfile:
-            db = json.dump(payload, myfile)
-            #print(db)
+            json.dump(payload, myfile)
 
 
 
@@ -85,13 +82,25 @@ if __name__ == "__main__":
     tr1 = WithLibraryHeapq()
     tr2 = WithoutLibraryHeap()
 
-    tr2.insert(7)
-    tr2.insert(15)
-    tr2.insert(10)
-    tr2.insert(12)
-    tr2.insert(6)
-    tr2.insert(17)
-    tr2.insert(5)
+    #arr = [17,15,12,10,7,6,5]
+    #5, 6, 7, 10, 12, 15, 17
+    arr = [3,5,1,2,6,8,7]
+
+    for i in arr:
+        tr2.insert(i)
+
+    # assert that [1, 2, 3, 5, 6, 8, 7] is the correct heap agasint my finshed implementation
+    print(f"tr2 storage: {tr2.storage}")
+    print(f"the heapq answer: {heapq.heapify(tr2.storage)}" )
+    assert (tr2.storage == heapq.heapify(tr2.storage)), "the heap is not correct"
+
+    #tr2.insert(100)
+    #tr2.insert(230)
+    #tr2.insert(44)
+    #tr2.insert(1)
+    #tr2.insert(74)
+    #tr2.insert(17)
+    #tr2.insert(5)
     #tr2.insert(80)
     #tr2.insert(90)
     #tr2.insert(100)
