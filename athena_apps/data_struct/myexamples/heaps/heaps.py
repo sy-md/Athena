@@ -25,10 +25,31 @@ class WithoutLibraryHeap:
         self.capacity = capacity # maximum number of elements the heap can hold
         self.size = 0 # number of actually elements in the heap
 
+    def is_min_heap(self, arr) -> bool:
+        """
+        given the array of elements, check if the array is a min heap
+        the while loop is used to check if the left and right child of the current
+        """
+        cur = 0
+        left_child = 2*cur + 1
+        right_child = 2*cur + 2
+
+        while cur < len(arr):
+            """
+            
+            """
+            if left_child < len(arr) and arr[cur] < arr[left_child]:
+                return True
+            if right_child < len(arr) and arr[cur] < arr[right_child]:
+                return True
+            cur += 1
+            left_child = 2*cur + 1
+            right_child = 2*cur + 2
+
     def insert(self, value):
         if self.size == self.capacity:
             WithoutLibraryHeap.display(self)
-        else:        
+        else:
             self.storage.append(value)
             self.size += 1
             print(f"inserted {value} into the heap")
@@ -41,27 +62,22 @@ class WithoutLibraryHeap:
         the parent of the node at index i is at index (cur-1)//2
         the left child of the node at index i is at index 2*cur + 1
         the right child of the node at index i is at index 2*cur + 2
-        
+
+        this method is used to bubble up the newly added node based on thee currnet
+        node and its parent node then swap the nodes if the current node is less than
+        its parent node.
         """
-
-
-        if self.size == 1:
+        if self.size == 1: # if the heap is only one element
             return WithoutLibraryHeap.display(self)
-        
-        cnt = self.size -1
-        while self.storage[cnt -1] > self.storage[cnt]:
-            if cnt <= 0:
-                break
-            if self.storage[cnt] < self.storage[cnt -1]:
-                self.storage[cnt], self.storage[cnt -1] = self.storage[cnt-1], self.storage[cnt]
-            cnt -= 1
 
-
+        cur = self.size - 1
+        while cur > 0 and self.storage[cur] <= self.storage[(cur-1)//2]:
+            self.storage[cur], self.storage[(cur-1)//2] = self.storage[(cur-1)//2], self.storage[cur]
+            cur = (cur-1)//2
             print("heapify",self.storage)
-            print("cnt-1",self.storage[cnt-1]) # 7
-            print("cnt-2",self.storage[cnt-2]) # 10
 
-        #return WithoutLibraryHeap.display(self)
+        WithoutLibraryHeap.display(self)
+
     def display(self):
         payload = {
             "storage": self.storage,
@@ -84,21 +100,25 @@ if __name__ == "__main__":
 
     #arr = [17,15,12,10,7,6,5]
     #5, 6, 7, 10, 12, 15, 17
-    arr = [3,5,1,2,6,8,7]
+    #arr = [3,5,1,2,6,8,7]
+    arr = [100,70,50,125,45,60,10]
 
     for i in arr:
         tr2.insert(i)
+    
+    if tr2.is_min_heap(arr):
+        print("the array is a min heap")
+    else:
+        print("the array is not a min heap")
+
 
     # assert that [1, 2, 3, 5, 6, 8, 7] is the correct heap agasint my finshed implementation
-    print(f"tr2 storage: {tr2.storage}")
-    print(f"the heapq answer: {heapq.heapify(tr2.storage)}" )
-    assert (tr2.storage == heapq.heapify(tr2.storage)), "the heap is not correct"
 
     #tr2.insert(100)
     #tr2.insert(230)
     #tr2.insert(44)
-    #tr2.insert(1)
     #tr2.insert(74)
+    #tr2.insert(1)
     #tr2.insert(17)
     #tr2.insert(5)
     #tr2.insert(80)

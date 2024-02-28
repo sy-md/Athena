@@ -1,1 +1,1 @@
-{"storage": [5, 6, 7, 15, 10, 12, 17, 0, 0, 0], "capacity": 10, "size": 7, "error": "the heap is not out of capacity"}
+{"storage": [10, 50, 45, 125, 100, 70, 60], "capacity": 10, "size": 7, "error": "the heap is not out of capacity"}
