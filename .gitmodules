@@ -25,12 +25,9 @@
 [submodule "atna_settings/copilot.vim"]
 	path = atna_settings/copilot.vim
 	url = https://github.com/github/copilot.vim.git
-<<<<<<< HEAD
-=======
 [submodule "atna_settings/i3wm_setup"]
 	path = atna_settings/i3wm_setup
 	url = https://github.com/sy-md/i3wm_setup.git
 [submodule "atna_settings/atna_eng_vim/nvim"]
 	path = atna_settings/atna_eng_vim/nvim
 	url = https://github.com/sy-md/nvim.git
->>>>>>> origin/TomorrowLand
