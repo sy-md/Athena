@@ -1,10 +1,12 @@
 import plotly.graph_objects as go
-#import plotly.express as px
-import pandas as pd
-from plotly.subplots import make_subplots 
-#from dash import Dash,html,dcc
+import plotly.express as px
+from plotly.subplots import make_subplots
+from dash import Dash,html,dcc
+from buget_eng import *
 
-#app = Dash(__name__)
+colors = {
+    "background": '#111111'
+}
 
 <<<<<<< HEAD
 fig = make_subplots(rows=1,cols=2)
@@ -59,6 +61,8 @@ def test_fuc():
 
 fig = make_subplots(rows=1,cols=2)
 
+<<<<<<< HEAD
+=======
 data2 = [100,50,51]
 data_time = [x for x in range(len(data2))] # this should be like time series data
 trendline = [0 * i for i in data_time]
@@ -153,6 +157,7 @@ fig.show()
 
 =======
 
+>>>>>>> System/Athena
 fig.add_trace( # the trendline
         go.Scatter(x=list([i for i in df.index.values]), y=df["t"], mode='lines'),
         row=1,col=1)
@@ -169,18 +174,32 @@ fig.add_trace( # the trendline
         go.Scatter(x=list([i for i in dfp.index.values]), y=list([i * 0 for i in df.index.values]), mode='lines'),
         row=1,col=2)
 
+fig.update_layout(
+    #height=600,width=900,
+    plot_bgcolor=colors['background'],
+    paper_bgcolor=colors['background'],
+)
 
-fig.update_layout(height=600,width=900)
+# the html of the dash app
+app = Dash(__name__)
 
-#app.layout = html.Div(children=[
-#    html.h1(children="fdhdfkjsdhf"),
+app.layout = html.Div(
+    style={'backgroundColor': colors['background']},
 
-#    dcc.Graph(
-#        id="example1",
-#       figure=fig
-#    )
-#])
+    children=[
+        html.H1(children="fdhdfkjsdhf"),
+
+    dcc.Graph(
+        id="example1",
+       figure=fig
+    )
+])
+
 if __name__ == "__main__":
+<<<<<<< HEAD
+    app.run(debug=True)
+    #fig.show()
+=======
 #    app.run(debug=True)
     fig.show()
 #print(df)
@@ -193,3 +212,4 @@ if __name__ == "__main__":
 #this  is also a 50% decrese to then then the other grpah will show the the point of 50% 
 #then when the another point is added for example $300 + $150 then the next point on the perctenage grpah will
 #be 25% so itll show 50% to 25% showing a negative trend line in percentages
+>>>>>>> System/Athena

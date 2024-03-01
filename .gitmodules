@@ -18,10 +18,6 @@
 	path = atna_music/sy-music
 	url = https://github.com/sy-md/sy-music.git
 
-[submodule "DSA"]
-	path = athena_apps/data-structures-algorithms-python
-	url = https://github.com/sy-md/data-structures-algorithms-python.git
-
 [submodule "Youtube_api"]
 	path = athena_apps/Youtube_api
 	url = https://github.com/sy-md/Youtube_api.git
@@ -29,3 +25,12 @@
 [submodule "atna_settings/copilot.vim"]
 	path = atna_settings/copilot.vim
 	url = https://github.com/github/copilot.vim.git
+<<<<<<< HEAD
+=======
+[submodule "atna_settings/i3wm_setup"]
+	path = atna_settings/i3wm_setup
+	url = https://github.com/sy-md/i3wm_setup.git
+[submodule "atna_settings/atna_eng_vim/nvim"]
+	path = atna_settings/atna_eng_vim/nvim
+	url = https://github.com/sy-md/nvim.git
+>>>>>>> origin/TomorrowLand
