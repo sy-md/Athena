@@ -1,5 +1,4 @@
 import requests
-from pysam import FastaFile
 from Bio import SeqIO
 
 class Bioinformatics:
@@ -23,74 +22,37 @@ class Bioinformatics:
 
         return tmpstr + "\033[0;0m"
 
-    def count_nucleotides(data, arr): 
+    def count_nucleotides(data, arr) -> list: 
         data = {"A": 0, "C": 0, "G": 0, "T": 0}
 
         for nuc in arr:
             data[nuc] += 1
         return data.values()
     
-    def TranscribeDNAtoRNA(data):
+    def TranscribeDNAtoRNA(data) -> str:
         return(data.replace("T", "U"))
 
-    def ReadingLines(arr=None, flname=None):
+    def ReadingLines(arr=None, flname=None) -> dict:
         """
-        for linux the file format is: "dna_data/rosalind_rna.txt"
-        for windows the file format is: its the full path
+        trying to solve the problem for when im given a file and it has
+        new lines and i need to read the lines and return the data to 
+        be ablie to ComplementingDNA 
+
+        F:\Athena/bioinfomatics/dna_data/
         """
-        db = {
-            "database": [],
-            "test" : ""
-        }
+        db = {}
+        format_file = f"F:\Athena/bioinfomatics/dna_data/{flname}"
+        with open(format_file) as handle:
+            for record in SeqIO.parse(handle, "fasta"):
+                db[record.id] = [record.seq]
+        return db 
 
-        idd = ""
-        mystring = ""
-
-        fasta = f"dna_data/{flname}"
-        if flname:
-            with open(fasta, 'r') as file:
-                for line in file.readlines():
-                    if line.startswith(">"):
-                        db[line] = []
-                        print(f"the idd is: {line}")
-                        idd = line
-
-                    else:
-                        #mystring += line.strip()
-                        db["database"].append(line.strip())
-                        #db[idd] = mystring
-        if arr:
-            for i in range(len(arr)):
-                if arr[i].startswith(">"):
-                    db[arr[i]] = []
-                    idd = arr[i]
-                else:
-                    mystring += arr[i].strip()
-                    db["test"] = mystring
-        return db
-
-    def ComplementingDNA(data):
+    def ComplementingDNA(data) -> str:
         #return data[::-1].translate(str.maketrans("ACGT", "TGCA"))
         if isinstance(data,list):
             return("data is a list")
         else:
             return("data is not a list")
-        
-    def MakingGCContnent(data):
-        """
-        FASTA format:
-            >Rosalind_6404
-            ID "Rosaling_xxxx" {0...9}
-
-        """
-        gc_content = {}
-
-        for i in range(len(data)):
-            if data[i].startswith(">"):
-                label = i
-                gc_content[data[label]] = [data[label+1]]
-        return Bioinformatics.ComputingGCContent(gc_content)
-        #print(gc_content)
         
     def ComputingGCContent(gc_content: dict) -> float:
         """
@@ -104,17 +66,18 @@ class Bioinformatics:
                 (gc_content[keys][0].count("G") + gc_content[keys][0].count("C"))
                 / len(gc_content[keys][0]) * 100
             )
-             
+
+
+
             gc_content[keys].append(CG_count)
 
             if CG_count > highest:
                 highest, name = CG_count, keys
-        print(f"the highest GC content is:\n{name} {highest}%")
+        return(f"the highest GC content is:\n{name} {highest}%")
 
     def HammingDistance(data: list) -> int: 
         """
-        The Hamming distance between two strings of equal length is the number of
-        positions at which the corresponding symbols are different.
+        The Hamming distance between two strings of equal length is the number of positions at which the corresponding symbols are different.
         """
         sum = 0
         if len(data[1]) and len(data[0]) == len(data[1]):
@@ -122,7 +85,7 @@ class Bioinformatics:
                 if data[0][i] != data[1][i]:
                     sum += 1
 
-        return sum      
+        return sum            
     
     def TranslatingRNAtoProtein(data: str) -> str:
         """
@@ -151,7 +114,7 @@ class Bioinformatics:
             if rna_codon[data[i:i+3]] == "Stop":
                 break
             protein = protein + rna_codon[data[i:i+3]]
-        return(protein)
+        print(protein)
 
     def FindingaMotifinDNA(data: list) -> str:
         """
@@ -186,9 +149,8 @@ class Bioinformatics:
                 The 'accession' value has invalid format. It should be a valid UniProtKB accession
             """
         db = []
-        mstr = ""
-        for id in data["database"]:
-
+        str = ""
+        for id in data:
             url = f"http://www.uniprot.org/uniprot/{id}.fasta"
             response = requests.get(url)
             for line in response.text.splitlines():
@@ -197,145 +159,43 @@ class Bioinformatics:
                     db.append(line[4:line.rfind("|")])
                     #print(line[4:line.rfind("|")])
                 else:
-                    print(line)
-                    mstr += line
-            db.append(str(mstr))
+                    print(line(len(line)))
+                    str += line
+            db.append(str)
         return db
 
-    def FindingaSharedMotif(data: dict) -> str:
+    def FindingaSharedMotif(data: list) -> str:
         """
         Finding a Shared Motif out of multiple DNA strings
-        using the longest common substring method
         """
         freq = {}
 
-        for key, value in data.items():
-            for i in range(len(value)):
-                if value[i:i+2] in data[key]:
-                    freq[value[i:i+2]] = freq.get(value[i:i+2], 0) + 1
-
-        # return the longest substring
-        return max(freq, key=freq.get)
-
-    def TranslatingDNAtoProtein(data: str) -> str:
-        """
-        Translating DNA to Protein
-        """
-        dna_codon = {
-            "TTT": "F", "CTT": "L", "ATT": "I", "GTT": "V",
-            "TTC": "F", "CTC": "L", "ATC": "I", "GTC": "V",
-            "TTA": "L", "CTA": "L", "ATA": "I", "GTA": "V",
-            "TTG": "L", "CTG": "L", "ATG": "M", "GTG": "V",
-            "TCT": "S", "CCT": "P", "ACT": "T", "GCT": "A",
-            "TCC": "S", "CCC": "P", "ACC": "T", "GCC": "A",
-            "TCA": "S", "CCA": "P", "ACA": "T", "GCA": "A",
-            "TCG": "S", "CCG": "P", "ACG": "T", "GCG": "A",
-            "TAT": "Y", "CAT": "H", "AAT": "N", "GAT": "D",
-            "TAC": "Y", "CAC": "H", "AAC": "N", "GAC": "D",
-            "TAA": "Stop", "CAA": "Q", "AAA": "K", "GAA": "E",
-            "TAG": "Stop", "CAG": "Q", "AAG": "K", "GAG": "E",
-            "TGT": "C", "CGT": "R", "AGT": "S", "GGT": "G",
-            "TGC": "C", "CGC": "R", "AGC": "S", "GGC": "G",
-            "TGA": "Stop", "CGA": "R", "AGA": "R", "GGA": "G",
-            "TGG": "W", "CGG": "R", "AGG": "R", "GGG": "G"
-        }
-        protein = ""
-        for i in range(0, len(data), 3):
-            if dna_codon[data[i:i+3]] == "Stop":
-                break
-            protein +=  dna_codon[data[i:i+3]]
-        return(protein)
-
-    def ReadingFramesTranslations(data: str, pos) -> list:
-        """
-        this function returns the reading frames of the dna
-        by using a for loop to iterate through the dna string
-        and then using the dna_codon dictionary to translate the dna
-        into protein creating 3 reading frames that is really 6 reading frames
-        because the dna can be read in the reverse direction
-
-        """
-        dna_codon = {
-            "TTT": "F", "CTT": "L", "ATT": "I", "GTT": "V",
-            "TTC": "F", "CTC": "L", "ATC": "I", "GTC": "V",
-            "TTA": "L", "CTA": "L", "ATA": "I", "GTA": "V",
-            "TTG": "L", "CTG": "L", "ATG": "M", "GTG": "V",
-            "TCT": "S", "CCT": "P", "ACT": "T", "GCT": "A",
-            "TCC": "S", "CCC": "P", "ACC": "T", "GCC": "A",
-            "TCA": "S", "CCA": "P", "ACA": "T", "GCA": "A",
-            "TCG": "S", "CCG": "P", "ACG": "T", "GCG": "A",
-            "TAT": "Y", "CAT": "H", "AAT": "N", "GAT": "D",
-            "TAC": "Y", "CAC": "H", "AAC": "N", "GAC": "D",
-            "TAA": "Stop", "CAA": "Q", "AAA": "K", "GAA": "E",
-            "TAG": "Stop", "CAG": "Q", "AAG": "K", "GAG": "E",
-            "TGT": "C", "CGT": "R", "AGT": "S", "GGT": "G",
-            "TGC": "C", "CGC": "R", "AGC": "S", "GGC": "G",
-            "TGA": "Stop", "CGA": "R", "AGA": "R", "GGA": "G",
-            "TGG": "W", "CGG": "R", "AGG": "R", "GGG": "G"
-        }
-        return [dna_codon[data[i:i+3]] for i in range(pos, len(data)-2, 3)]
-
-    def CalculatingProtiensMass(data: str) -> float:
-        """
-        Calculating Protein Mass
-        """
-        mass = {
-            "A": 71.03711, "C": 103.00919, "D": 115.02694, "E": 129.04259,
-            "F": 147.06841, "G": 57.02146, "H": 137.05891, "I": 113.08406,
-            "K": 128.09496, "L": 113.08406, "M": 131.04049, "N": 114.04293,
-            "P": 97.05276, "Q": 128.05858, "R": 156.10111, "S": 87.03203,
-            "T": 101.04768, "V": 99.06841, "W": 186.07931, "Y": 163.06333
-        }
-        massa = 0
         for i in range(len(data)):
-            massa += mass[data[i]]
-        return massa
-
-    def ComputeAllProteinFromOrf(data: str) -> list:
-        """
-        Compute All Protein From Orf
-        """
-        dna_codon = {
-            "TTT": "F", "CTT": "L", "ATT": "I", "GTT": "V",
-            "TTC": "F", "CTC": "L", "ATC": "I", "GTC": "V",
-            "TTA": "L", "CTA": "L", "ATA": "I", "GTA": "V",
-            "TTG": "L", "CTG": "L", "ATG": "M", "GTG": "V",
-            "TCT": "S", "CCT": "P", "ACT": "T", "GCT": "A",
-            "TCC": "S", "CCC": "P", "ACC": "T", "GCC": "A",
-            "TCA": "S", "CCA": "P", "ACA": "T", "GCA": "A",
-            "TCG": "S", "CCG": "P", "ACG": "T", "GCG": "A",
-            "TAT": "Y", "CAT": "H", "AAT": "N", "GAT": "D",
-            "TAC": "Y", "CAC": "H", "AAC": "N", "GAC": "D",
-            "TAA": "Stop", "CAA": "Q", "AAA": "K", "GAA": "E",
-            "TAG": "Stop", "CAG": "Q", "AAG": "K", "GAG": "E",
-            "TGT": "C", "CGT": "R", "AGT": "S", "GGT": "G",
-            "TGC": "C", "CGC": "R", "AGC": "S", "GGC": "G",
-            "TGA": "Stop", "CGA": "R", "AGA": "R", "GGA": "G",
-            "TGG": "W", "CGG": "R", "AGG": "R", "GGG": "G"
-        }
-        protein = []
-        for i in range(0, len(data), 3):
-            if dna == "ATG":
-                protein.append(dna_codon[data[i:i+3]])
-            if dna_codon[data[i:i+3]] == "Stop":
-                break
-            protein.append(dna_codon[data[i:i+3]])
-
-
+            if data[i].startswith(">"):
+                continue
+            for j in range(len(data[i])):
+                if data[i][j] in freq:
+                    freq[data[i][j]] += 1
+                else:
+                    freq[data[i][j]] = 1
+        return freq
+        
 if __name__ == "__main__":
-    #flname = "rosalind_prtm.txt"
-    arr = "AGCCATGTAGCTAACTCAGGTTACATGGGGATGACCCCGCGACTTGGATTAGAGTCTCTTTTGGAATAAGCCTGAATGATCCGAGTAGCATCTCAG"
-    #arr = "AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA"
-    parsed = Bioinformatics.ReadingLines(arr=arr)
-    #parsed = Bioinformatics.ReadingLines(flname=flname)
+    flname = "rosalind_gc.txt"
+
+
+    #arr = "GATTACA\nTAGACCA\nATACA"
+    #parsed = Bioinformatics.ReadingLines(arr=arr)
+    parsed = Bioinformatics.ReadingLines(flname=flname)
+    print(parsed)
+    print(Bioinformatics.ComputingGCContent(parsed))
+    #print(parsed)
     #print(parsed)
     #print(Bioinformatics.FindingaMotifinDNA(parsed))
-    #print(B:ioinformatics.FindingaProteinMotif(parsed[0]))
+    #print(Bioinformatics.FindingaProteinMotif(parsed[0]))
     #print(Bioinformatics.FindingaProteinMotifWithDatabase(parsed))
-    frames = []
-    for i in range(3):
-        frames.append(Bioinformatics.ReadingFramesTranslations(parsed["test"], i))
-        print(f"the reading frame {i+1} is: {frames[i]}")
+
+    #print(Bioinformatics.FindingaSharedMotif(parsed))
 
 
 
