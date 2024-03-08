@@ -1,4 +1,5 @@
 import requests
+from Bio import SeqIO
 
 class Bioinformatics:
     def color_dnaoutput(data): # display colors
@@ -21,17 +22,17 @@ class Bioinformatics:
 
         return tmpstr + "\033[0;0m"
 
-    def count_nucleotides(data, arr): 
+    def count_nucleotides(data, arr) -> list: 
         data = {"A": 0, "C": 0, "G": 0, "T": 0}
 
         for nuc in arr:
             data[nuc] += 1
         return data.values()
     
-    def TranscribeDNAtoRNA(data):
-        print(data.replace("T", "U"))
+    def TranscribeDNAtoRNA(data) -> str:
+        return(data.replace("T", "U"))
 
-    def ReadingLines(arr=None, flname=None):
+    def ReadingLines(arr=None, flname=None) -> dict:
         """
         trying to solve the problem for when im given a file and it has
         new lines and i need to read the lines and return the data to 
@@ -39,50 +40,19 @@ class Bioinformatics:
 
         F:\Athena/bioinfomatics/dna_data/
         """
-        db = []
-        new_line = -1
-        format = f"F:\Athena/bioinfomatics/dna_data/{flname}"
-        if flname:
-            with open(format, 'r') as file:
-                for i in (file):
-                    if i.startswith(">"):
-                        db.append(i[:new_line])
-                    genome_sequence = ''
-                    for line in file:
-                        if line.startswith('>'):
-                            break
-                        genome_sequence += line[:new_line]
-                    db.append(genome_sequence)
-                    if line.startswith(">") != '>':
-                        break
-                    else:
-                        db.append(line)
-        if arr:
-            return arr.splitlines()
-
+        db = {}
+        format_file = f"F:\Athena/bioinfomatics/dna_data/{flname}"
+        with open(format_file) as handle:
+            for record in SeqIO.parse(handle, "fasta"):
+                db[record.id] = [record.seq]
         return db 
-    def ComplementingDNA(data):
+
+    def ComplementingDNA(data) -> str:
         #return data[::-1].translate(str.maketrans("ACGT", "TGCA"))
         if isinstance(data,list):
             return("data is a list")
         else:
             return("data is not a list")
-        
-    def MakingGCContnent(data):
-        """
-        FASTA format:
-            >Rosalind_6404
-            ID "Rosaling_xxxx" {0...9}
-
-        """
-        gc_content = {}
-
-        for i in range(len(data)):
-            if data[i].startswith(">"):
-                label = i
-                gc_content[data[label]] = [data[label+1]]
-        return Bioinformatics.ComputingGCContent(gc_content)
-        #print(gc_content)
         
     def ComputingGCContent(gc_content: dict) -> float:
         """
@@ -96,12 +66,14 @@ class Bioinformatics:
                 (gc_content[keys][0].count("G") + gc_content[keys][0].count("C"))
                 / len(gc_content[keys][0]) * 100
             )
-             
+
+
+
             gc_content[keys].append(CG_count)
 
             if CG_count > highest:
                 highest, name = CG_count, keys
-        print(f"the highest GC content is:\n{name} {highest}%")
+        return(f"the highest GC content is:\n{name} {highest}%")
 
     def HammingDistance(data: list) -> int: 
         """
@@ -209,16 +181,21 @@ class Bioinformatics:
         return freq
         
 if __name__ == "__main__":
-    flname = "rosalind_lcsm.txt"
+    flname = "rosalind_gc.txt"
+
+
     #arr = "GATTACA\nTAGACCA\nATACA"
     #parsed = Bioinformatics.ReadingLines(arr=arr)
     parsed = Bioinformatics.ReadingLines(flname=flname)
     print(parsed)
+    print(Bioinformatics.ComputingGCContent(parsed))
+    #print(parsed)
+    #print(parsed)
     #print(Bioinformatics.FindingaMotifinDNA(parsed))
     #print(Bioinformatics.FindingaProteinMotif(parsed[0]))
     #print(Bioinformatics.FindingaProteinMotifWithDatabase(parsed))
 
-    print(Bioinformatics.FindingaSharedMotif(parsed))
+    #print(Bioinformatics.FindingaSharedMotif(parsed))
 
 
 
