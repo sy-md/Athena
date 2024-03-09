@@ -1,5 +1,6 @@
 import requests
 from Bio import SeqIO
+import numpy as np
 
 class Bioinformatics:
     def color_dnaoutput(data): # display colors
@@ -179,16 +180,77 @@ class Bioinformatics:
                 else:
                     freq[data[i][j]] = 1
         return freq
+    
+    def Mendels_first_law(k, m, n):
+       t = k + m + n # total population
+       gen = [k, m, n] 
+       prob_leaves = [] # the tree of probabilities
+       base_p1 = [] # the first parents
+
+       def calculate_probability_of_each_leaf(k, m, n):
+           """
+           calculates the probability of each leaf in the genetic tree.
+           
+           Args:
+               k (int): Number of homozygous dominant alleles (GG)
+               m (int): Number of heterozygous alleles (Gg)
+               n (int): Number of homozygous recessive alleles (gg)
+           """
+           for i in range(0, len(gen)):
+               base_p1.append(gen[i] / t)
+               for j in range(0, len(gen)):
+                   if i != j:
+                       # Probability of dominant
+                       prob_leaves.append(base_p1[i] * gen[j] / (t - 1))
+                   else:
+                       # Probability of recessive
+                       prob_leaves.append(base_p1[i] * (gen[j] - 1) / (t - 1))
+
+           dom_all = sum(prob_leaves)
+           print(f"{prob_leaves}\n{dom_all}")
+       
+
+       def calculate_fraction_of_dominant_allele():
+           """
+           Calculates the fraction of dominant alleles in a genetic population.
+
+           Returns:
+           - None
+
+           Prints:
+           - The fraction of dominant alleles for each combination of genotypes.
+           - The sum of the probabilities of each combination of genotypes.
+           """
+           GG = np.array([[0,0]])
+           Gg = np.array([[0,1]])
+           gg = np.array([[1,1]])
+
+           frac = []
+           sum_prob = []
+
+           for iT in [GG, Gg, gg]:
+               for i in [GG, Gg, gg]:
+                   matrix = iT.T * i
+                   dom = np.sum(matrix == 0) / 4
+                   frac.append(dom)
+           print(frac)
+           
+           for i in range(0, len(frac)):
+               sum_prob.append(frac[i] * prob_leaves[i])
+           print(sum(sum_prob))
+
+       calculate_probability_of_each_leaf(k, m, n)
+       calculate_fraction_of_dominant_allele()
         
 if __name__ == "__main__":
-    flname = "rosalind_gc.txt"
-
+    #flname = "rosalind_gc.txt"
+    Bioinformatics.Mendels_first_law(28,23,16)
 
     #arr = "GATTACA\nTAGACCA\nATACA"
     #parsed = Bioinformatics.ReadingLines(arr=arr)
-    parsed = Bioinformatics.ReadingLines(flname=flname)
-    print(parsed)
-    print(Bioinformatics.ComputingGCContent(parsed))
+    #parsed = Bioinformatics.ReadingLines(flname=flname)
+    #print(parsed)
+    #print(Bioinformatics.ComputingGCContent(parsed))
     #print(parsed)
     #print(parsed)
     #print(Bioinformatics.FindingaMotifinDNA(parsed))
