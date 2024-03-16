@@ -1,7 +1,7 @@
 import requests
 from Bio import SeqIO
 import numpy as np
-
+from Bio import motifs
 class Bioinformatics:
     def color_dnaoutput(data): # display colors
         bcloors = {
@@ -45,7 +45,8 @@ class Bioinformatics:
         format_file = f"F:\Athena/bioinfomatics/dna_data/{flname}"
         with open(format_file) as handle:
             for record in SeqIO.parse(handle, "fasta"):
-                db[record.id] = [record.seq]
+                db[record.id] = record.seq
+                #db[record.id] = [record.seq, GCcontent]
         return db 
 
     def ComplementingDNA(data) -> str:
@@ -120,6 +121,8 @@ class Bioinformatics:
     def FindingaMotifinDNA(data: list) -> str:
         """
         Finding a Motif in DNA
+        this function takes a list of two strings and returns,
+        the position of the motif in the dna string
         """
         motif = data[1]
         dna = data[0]
@@ -132,7 +135,8 @@ class Bioinformatics:
     
     def FindingaProteinMotif(data: str) -> str:
         """
-        Finding a Protein Motif
+        this function takes a string and returns the position
+        of the motif in the protein string
         """
         motif = ["N",["S","T"]]
         pos = ""
@@ -165,22 +169,30 @@ class Bioinformatics:
             db.append(str)
         return db
 
-    def FindingaSharedMotif(data: list) -> str:
-        """
-        Finding a Shared Motif out of multiple DNA strings
-        """
-        freq = {}
+    def FindingLongestCommonSubsequence(dataa: dict) -> str:
+        data = []
+        for key ,value in dataa.items():
+            data.append(value)
+            
+        print(data)
+        srt_seq = sorted(data, key=len)     
+        short_seq = srt_seq[0]                   
+        comp_seq = srt_seq[1:]                   
+        motif = ''                               
+        for i in range(len(short_seq)):          
+            for j in range(i, len(short_seq)):   
+                m = short_seq[i:j + 1]           
+                found = False                    
+                for sequ in comp_seq:            
+                    if m in sequ:                
+                        found = True             
+                    else:                        
+                        found = False            
+                        break                    
+                if found and len(m) > len(motif):
+                    motif = m                    
+        return(motif)                           
 
-        for i in range(len(data)):
-            if data[i].startswith(">"):
-                continue
-            for j in range(len(data[i])):
-                if data[i][j] in freq:
-                    freq[data[i][j]] += 1
-                else:
-                    freq[data[i][j]] = 1
-        return freq
-    
     def Mendels_first_law(k, m, n):
        t = k + m + n # total population
        gen = [k, m, n] 
@@ -241,10 +253,38 @@ class Bioinformatics:
 
        calculate_probability_of_each_leaf(k, m, n)
        calculate_fraction_of_dominant_allele()
-        
+
+    def ConsensusandProfile(dataa: list) -> str:
+        """
+        Consensus and Profile
+        """
+        profile = {"A": "", "C": "", "G": "" ,"T": ""}
+        consensus = {"A": 0, "C": 0, "G": 0 ,"T": 0}
+
+        for i in range(0,len(dataa)):
+            for key in range(0,len(dataa[i])):
+                if dataa[i][key] in profile:
+                    profile[dataa[i][key]] += str(key)
+                    profile[dataa[i][key]] += " "
+                    consensus[dataa[i][key]] += 1
+        print(f"{consensus}")
+        for key in profile:
+            print(f"{key}: {profile[key]}")
+
+
+
 if __name__ == "__main__":
-    #flname = "rosalind_gc.txt"
-    Bioinformatics.Mendels_first_law(28,23,16)
+    data = ["A T C C A G C T",
+            "G G G C A A C T",
+            "A T G G A T C T"]
+
+    #flname = "rosalind_lcsm.txt"
+    #parsed = Bioinformatics.ReadingLines(flname=flname)
+    print(Bioinformatics.ConsensusandProfile(data))
+    #print(Bioinformatics.FindingLongestCommonSubsequence(parsed))
+    #print(Bioinformatics.ConsensusandProfile(parsed))
+    #flname = "rosalind_.txt"
+    #Bioinformatics.Mendels_first_law(28,23,16)
 
     #arr = "GATTACA\nTAGACCA\nATACA"
     #parsed = Bioinformatics.ReadingLines(arr=arr)
