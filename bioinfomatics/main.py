@@ -254,33 +254,73 @@ class Bioinformatics:
        calculate_probability_of_each_leaf(k, m, n)
        calculate_fraction_of_dominant_allele()
 
-    def ConsensusandProfile(dataa: list) -> str:
+    def ConsensusandProfile(dataa: list):
         """
         Consensus and Profile
         """
-        profile = {"A": "", "C": "", "G": "" ,"T": ""}
-        consensus = {"A": 0, "C": 0, "G": 0 ,"T": 0}
+        if isinstance(dataa, list):
+            print("data is a list")
+            dataa = dataa
+        if isinstance(dataa, dict):
+            #print("data is a dictionary")
+            # create a list of the values in the dictionary
+            dataa = list(dataa.values())
 
-        for i in range(0,len(dataa)):
-            for key in range(0,len(dataa[i])):
-                if dataa[i][key] in profile:
-                    profile[dataa[i][key]] += str(key)
-                    profile[dataa[i][key]] += " "
-                    consensus[dataa[i][key]] += 1
-        print(f"{consensus}")
-        for key in profile:
-            print(f"{key}: {profile[key]}")
+        profile = {"A": [0 for _ in range(0,len(dataa[0]))], 
+                   "C": [0 for _ in range(0,len(dataa[0]))], 
+                   "G": [0 for _ in range(0,len(dataa[0]))], 
+                   "T": [0 for _ in range(0,len(dataa[0]))]}
+        inex = 0
+        while inex < len(dataa[0]): # 0 less than 8
+            for i in range(0, len(dataa)):
+                if dataa[i][inex] in profile:
+                    lst = profile[dataa[i][inex]]
+                    lst[inex] += 1
+            inex += 1
+
+        consensus = ""
+        """
+        calculate the consensus string finding the most frequent
+        nucleotide at each position of profile dictionary for each
+        index in the list of dna strings ouput must be 8 characters
+        """
+        for i in range(len(dataa[0])):
+            max_count = max(profile[nucleotide][i] for nucleotide in "ACGT")
+            consensus += next(nucleotide for nucleotide in "ACGT" if profile[nucleotide][i] == max_count)
+
+        print(consensus)
+        for key, val in profile.items():
+            print(f"{key}: {' '.join(map(str, val))}")
+        
+        
+     
+            
+
+       #        if dataa[i][key] in profile:
+       #            if key.index == :
+       #                profile[dataa[i][key]].insert(0,1)
+       #            consensus[dataa[i][key]] += 1
+       #consensus = max(consensus, key=consensus.get)
+       #print(f"{consensus}")
+       #for key in profile:
+       #    print(f"{key}: {profile[key]}")
 
 
 
 if __name__ == "__main__":
-    data = ["A T C C A G C T",
-            "G G G C A A C T",
-            "A T G G A T C T"]
+    data = [
+            "ATCCAGCT",
+            "GGGCAACT",
+            "ATGGATCT",
+            "AAGTAACC", # c to t 4
+            "TTGGAACT",
+            "ATGCCATT",
+            "ATGGCACT"
+            ]
 
-    #flname = "rosalind_lcsm.txt"
-    #parsed = Bioinformatics.ReadingLines(flname=flname)
-    print(Bioinformatics.ConsensusandProfile(data))
+    flname = "rosalind_cons.txt"
+    parsed = Bioinformatics.ReadingLines(flname=flname)
+    Bioinformatics.ConsensusandProfile(parsed)
     #print(Bioinformatics.FindingLongestCommonSubsequence(parsed))
     #print(Bioinformatics.ConsensusandProfile(parsed))
     #flname = "rosalind_.txt"
